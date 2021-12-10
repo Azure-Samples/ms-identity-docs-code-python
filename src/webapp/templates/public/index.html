@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block page_title %}Home{% endblock %}
+{% block content %}
+    <div>This page can be accessed by all users, authenticated or not.</div>
+    <div>
+      <p>The following links will all require you to sign into the application before they can be used. Navigating to them while not logged in will automatically initiate the login process.</p>
+      <ul>
+        <li><a href="/graph">This link</a> doesn't require that your user has any specific application roles assigned, and will access Microsoft Graph on your behalf.</li>
+        <li><a href="/admin">This link</a> requires that your user has the application-defined, <code>admin</code> role assigned.</li>
+      </ul>
+    </div>
+{% endblock %}

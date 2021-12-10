@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block page_title %}Graph Access as Admin{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block content %}
+<div>This page can be accessed by only logged-in users that have the <strong>admin</strong> role assigned.</div>
+<div>
+  <p>This is based on the <strong>roles</strong> in your id token stored in your user session.</p>
+  <p><pre><code class="language-js">{{ graphCallResponse | tojson(indent=2) }}</code></pre></p>
+</div>
+<div>
+  <p>The following links will all require you to sign into the application before they can be used. Navigating to them while not logged in will automatically initiate the login process.</p>
+  <ul>
+    <li><a href="/graph">This link</a> doesn't require that your user has any specific application roles assigned, and will access Microsoft Graph on your behalf.</li>
+    <li><a href="/admin">This link</a> requires that your user has the application-defined, <code>admin</code> role assigned. <em>(That's this page.)</em></li>
+  </ul>
+</div>
+<div>
+  <p><a href="/">Return to home.</a></p>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js" integrity="sha512-hpZ5pDCF2bRCweL5WoA0/N1elet1KYL5mx3LP555Eg/0ZguaHawxNvEjF6O3rufAChs16HVNhEc6blF/rZoowQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
+
+
+
