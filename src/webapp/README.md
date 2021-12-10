@@ -29,6 +29,7 @@ This sample demonstrates a Python Flask web application that is both protected b
 
 ## Prerequisites
 
+- An Azure Active Directory (Azure AD) tenant and required permissions to create app registrations.
 - Python 3.8+
 
 ## Setup
