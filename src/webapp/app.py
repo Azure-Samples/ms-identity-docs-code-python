@@ -200,32 +200,6 @@ def create_app():
         # the auth_code_flow session object.
         return redirect(auth_code_flow["post_sign_in_url"])
 
-    @app.get("/logout")
-    def logout():
-        # If we had anything in our session tied to auth, completely remove it.
-        # The msal_http_response_cache can survive this as there is nothing
-        # related to an individual authentication cached in there.
-        session.pop("user", None)
-        session.pop("auth_code_flow", None)
-        session.pop("token_cache", None)
-
-        # If your application supported logging in with multiple accounts and
-        # you could selectively log out of individual accounts, then instead
-        # of removing the token_cache from the session, you'd hydrate the
-        # MSAL client with the token_cache from the session and then call
-        # msal_client.remove_account(_account_to_remove_), then persist that
-        # updated token_cache back to the session.
-
-        # If you also wanted your app's log out to suggest that the user logs
-        # out of their Azure AD SSO session as well, you would redirect the
-        # user as such:
-        # return redirect(f"{app.config['AUTHORITY']}/oauth2/v2.0/logout"
-        #   "?post_logout_redirect_uri={url_for('index', _external=True)}")
-        # If you do not do that, the user will still be signed into Azure AD
-        # (SSO), meaning next time the user needs to sign in here, it will
-        # happen without the user needing to re-enter their credentials.
-        return redirect(url_for("index"))
-
     @app.get("/graph")
     # This route requires prior authentication
     def graph():
@@ -348,5 +322,31 @@ def create_app():
         return render_template(
             "authenticated/admin.html", graphCallResponse=user_claims
         )
+
+    @app.get("/logout")
+    def logout():
+        # If we had anything in our session tied to auth, completely remove it.
+        # The msal_http_response_cache can survive this as there is nothing
+        # related to an individual authentication cached in there.
+        session.pop("user", None)
+        session.pop("auth_code_flow", None)
+        session.pop("token_cache", None)
+
+        # If your application supported logging in with multiple accounts and
+        # you could selectively log out of individual accounts, then instead
+        # of removing the token_cache from the session, you'd hydrate the
+        # MSAL client with the token_cache from the session and then call
+        # msal_client.remove_account(_account_to_remove_), then persist that
+        # updated token_cache back to the session.
+
+        # If you also wanted your app's log out to suggest that the user logs
+        # out of their Azure AD SSO session as well, you would redirect the
+        # user as such:
+        # return redirect(f"{app.config['AUTHORITY']}/oauth2/v2.0/logout"
+        #   "?post_logout_redirect_uri={url_for('index', _external=True)}")
+        # If you do not do that, the user will still be signed into Azure AD
+        # (SSO), meaning next time the user needs to sign in here, it will
+        # happen without the user needing to re-enter their credentials.
+        return redirect(url_for("index"))
 
     return app

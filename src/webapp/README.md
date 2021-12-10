@@ -71,7 +71,7 @@ Open the _default\_settings.py_ file and modify the three Azure Active Directory
 
 ### 3. Install package(s)
 
-To install Flask and msal into your (virtual) environment:
+To install Flask and MSAL libraries into your (virtual) environment:
 
 ```bash
 pip install -r requirements.txt
@@ -87,7 +87,7 @@ flask run --host=localhost
 
 Open your browser and navigate to **http://localhost:5000**. If everything worked, the sample app should produce output similar to this:
 
-![A browser screenshot showing the weclome page to the sample application.](./app.png)
+![A browser screenshot showing the weclome page to the sample application.](./home.png)
 
 ## About the code
 
