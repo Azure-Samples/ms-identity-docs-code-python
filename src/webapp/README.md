@@ -15,7 +15,7 @@ urlFragment: ms-identity-docs-code-webapp-python
 ---
 -->
 
-# Python web application - protected and accessing Microsoft Graph | Microsoft identity platform
+# Python Flask | web app | user sign-in, access control (protected routes), protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
