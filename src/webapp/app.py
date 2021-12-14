@@ -41,11 +41,9 @@ def create_app():
     app = Flask(__name__)
 
     # In addition to any Flask specific configuration from these default
-    # settings. The following four keys are also expected as they are used
-    # with the MSAL client in this sample:
-    # - CLIENT_ID ~ Example: "8a193f2d-e89d-c577-81b7-145f76344a77"
-    # - CLIENT_CREDENTIAL ~ Example: "jPk7Q~NeKvlrrCj2_0tl~q-PR~o9Tp10W88"
-    # - AUTHORITY ~ Example: "https://login.microsoftonline.com/contoso.onmicrosoft.com"
+    # settings. The following three keys are also expected as they are used
+    # with the MSAL client in this sample: CLIENT_ID, CLIENT_CREDENTIAL,
+    # and AUTHORITY.
     app.config.from_object("default_settings")
 
     # Session will be used for three [per-user] purposes

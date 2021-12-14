@@ -21,7 +21,7 @@ urlFragment: ms-identity-docs-code-webapp-python
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 -->
 
-This sample demonstrates a Python Flask web application that is both protected by Microsoft identity platform and accesses Microsoft Graph as the user by using the Microsoft Authentication Library (MSAL) for Python..
+This sample demonstrates a Python Flask web application that is both protected by Microsoft identity platform and accesses Microsoft Graph as the user by using the Microsoft Authentication Library (MSAL) for Python.
 
 ![A browser screenshot on a page showing a response from Microsoft Graph](./app.png)
 
@@ -40,17 +40,14 @@ First, complete the steps in [Register an application with the Microsoft identit
 
 Use these settings in your app registration.
 
-| App registration <br/> setting | Value for this sample app                                                  | Notes                                                                                              |
-|:----------------------------:|:-----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
-| **Name**                     | `python-webapp`                                                              | Suggested value for this sample. <br/> You can change the app name at any time.                    |
-| **Supported account types**  | **Accounts in this organizational directory only (Single tenant)**           | Suggested value for this sample.                                                                   |
-| **Platform type**            | **Web**                                                                      | Required value for this sample. <br/> Enables the required and optional settings for the app type. |
-| **Redirect URI**             | `http://localhost:5000/auth/redirect`                                        | Required value for this sample.                                                                    |
-| **Client secret**            | _**Value** of the client secret (not its ID)_                                                | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).        |
-| **Implicit grant & hybrid flows** | _None selected_                                                         | This sample does not use the implicit grant or hybrid flows.                                       |
-| **Allow public client flows** | **No**                                                                      | This sample does not use a public client flow.                                                     |
-| **Token configuration**      | _No additional claims_                                                       | This sample does not rely on any additional claims existing in the tokens.                         |
-| **App roles**                | _Add an App role called `admin` for use by **Users/Groups**_                 | Required value for this sample. <bn /> One route requires your user to be assigned this role.      |
+| App registration <br/> setting | Value for this sample app                                                    | Notes                                                                                              |
+|:------------------------------:|:-----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
+| **Name**                       | `python-webapp`                                                              | Suggested value for this sample. <br/> You can change the app name at any time.                    |
+| **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**           | Suggested value for this sample.                                                                   |
+| **Platform type**              | **Web**                                                                      | Required value for this sample. <br/> Enables the required and optional settings for the app type. |
+| **Redirect URI**               | `http://localhost:5000/auth/redirect`                                        | Required value for this sample.                                                                    |
+| **Client secret**              | _**Value** of the client secret (not its ID)_                                | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).        |
+| **App roles**                  | _Add an App role called `admin` for use by **Users/Groups**_                 | Required value for this sample. <br/> One route requires your user to be assigned this role.       |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
 
@@ -58,7 +55,7 @@ Use these settings in your Enterprise Application for this sample app
 
 | Enterprise Application <br/> setting | Value for this sample app                                            | Notes                                                                                              |
 |:------------------------------------:|:---------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
-| **Users and groups**                 | _Add yourself with the **Role** of **admin**_                        | Required value for this sample. <bn /> One route requires your user to be assigned this role.      |
+| **Users and groups**                 | _Add yourself with the **Role** of **admin**_                        | Required value for this sample. <br/> One route requires your user to be assigned this role.      |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
 
@@ -67,8 +64,16 @@ Use these settings in your Enterprise Application for this sample app
 Open the _default\_settings.py_ file and modify the three Azure Active Directory configuration properties using the values from your [app's registration in the Azure portal](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app).
 
 - `CLIENT_ID`: `"Application (client) ID"`
-- `AUTHORITY`: `"https://login.microsoftonline.com/{your tenant}"`
 - `CLIENT_CREDENTIAL`: `"********"`
+- `AUTHORITY`: `"https://login.microsoftonline.com/{your tenant's primary domain or tenant id}"`
+
+For example, that configuration might look like the following:
+
+```python
+CLIENT_ID = "8a193f2d-e89d-c577-81b7-145f76344a77"
+CLIENT_CREDENTIAL = "jaPk7Q~NeKvlrrCj2_0tl~q-PR~o9Tp10W88"
+AUTHORITY = "https://login.microsoftonline.com/contoso.onmicrosoft.com"
+```
 
 ### 3. Install package(s)
 
