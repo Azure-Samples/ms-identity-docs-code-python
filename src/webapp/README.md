@@ -29,7 +29,7 @@ This sample demonstrates a Python Flask web application that is both protected b
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant and required permissions to create App registrations.
+- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
 - Python 3.8+
 
 ## Setup
@@ -46,7 +46,7 @@ Use these settings in your app registration.
 | **Supported account types**  | **Accounts in this organizational directory only (Single tenant)**           | Suggested value for this sample.                                                                   |
 | **Platform type**            | **Web**                                                                      | Required value for this sample. <br/> Enables the required and optional settings for the app type. |
 | **Redirect URI**             | `http://localhost:5000/auth/redirect`                                        | Required value for this sample.                                                                    |
-| **Client secret**            | _Value shown in Azure portal_                                                | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).        |
+| **Client secret**            | _**Value** of the client secret (not its ID)_                                                | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).        |
 | **Implicit grant & hybrid flows** | _None selected_                                                         | This sample does not use the implicit grant or hybrid flows.                                       |
 | **Allow public client flows** | **No**                                                                      | This sample does not use a public client flow.                                                     |
 | **Token configuration**      | _No additional claims_                                                       | This sample does not rely on any additional claims existing in the tokens.                         |
@@ -92,7 +92,9 @@ Open your browser and navigate to **http://localhost:5000**. If everything worke
 
 ## About the code
 
-This python web application is using the Flask web framework. It includes three navigatable routes with three different authentication/authorization levels required. As soon as the user navigates to a route that requires authentication, the user will be redirected to the Azure AD to sign in (if not already signed in via single sign-on) and accept the required app permissions.
+This Python web application uses the Flask web framework. The app has three routes, each requiring a different authentication/authorization level.
+
+When a signed-out user navigates to a route requiring authentication, their browser is redirected to the Azure AD sign-in page. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data.
 
 Please be aware that all of the controller method processing is performed "inline" in the body of the controller. Meaning, the code does not rely on any Flask frameworks (or even utility methods) to ensure that the interplay between the Microsoft Authentication Library (MSAL) and the Flask session is understood. In practice you'd of course handle cross-cutting concerns such as authorization, authentication, session management in a more Flask-native way, reducing duplication and abstracting the logic away from the specific purpose of the controller method.
 
