@@ -15,8 +15,11 @@ DEBUG = True
 # For local development purposes
 SESSION_TYPE = "filesystem"
 
-# Azure AD configuration - Update these three to your values
-# See README.md for more details
+# 'Application (client) ID' of app registration in Azure portal - this value is a GUID
 CLIENT_ID = ""
+
+# Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
 CLIENT_CREDENTIAL = ""
+
+# Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
 AUTHORITY = ""

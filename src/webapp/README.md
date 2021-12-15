@@ -47,17 +47,15 @@ Use these settings in your app registration.
 | **Platform type**              | **Web**                                                                      | Required value for this sample. <br/> Enables the required and optional settings for the app type. |
 | **Redirect URI**               | `http://localhost:5000/auth/redirect`                                        | Required value for this sample.                                                                    |
 | **Client secret**              | _**Value** of the client secret (not its ID)_                                | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).        |
-| **App roles**                  | _Add an App role called `admin` for use by **Users/Groups**_                 | Required value for this sample. <br/> One route requires your user to be assigned this role.       |
+| **App roles**                  | **Display name**: `admin`<br/>**Allowed member types:**: **Users/Groups**<br/>**Value**: `admin`<br/>**Description**: `admin app role` | Required role for this sample. <br/> One route requires your user to be assigned this role. |
 
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+Use these settings in your Enterprise Application for this sample app.
 
-Use these settings in your Enterprise Application for this sample app
+| Enterprise Application <br/> setting | Value for this sample app                    | Notes                                                                                        |
+|:------------------------------------:|:---------------------------------------------|:---------------------------------------------------------------------------------------------|
+| **Users and groups**                 | **User**: _yourself_<br/>**Role**: **admin** | Required value for this sample. <br/> One route requires your user to be assigned this role. |
 
-| Enterprise Application <br/> setting | Value for this sample app                                            | Notes                                                                                              |
-|:------------------------------------:|:---------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
-| **Users and groups**                 | _Add yourself with the **Role** of **admin**_                        | Required value for this sample. <br/> One route requires your user to be assigned this role.      |
-
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
 
 ### 2. Update code sample with app registration values
 
@@ -65,7 +63,7 @@ Open the _default\_settings.py_ file and modify the three Azure Active Directory
 
 - `CLIENT_ID`: `"Application (client) ID"`
 - `CLIENT_CREDENTIAL`: `"********"`
-- `AUTHORITY`: `"https://login.microsoftonline.com/{your tenant's primary domain or tenant id}"`
+- `AUTHORITY`: `"https://login.microsoftonline.com/{your tenant's 'Primary domain' or 'Tenant ID'}"`
 
 For example, that configuration might look like the following:
 
