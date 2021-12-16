@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block page_title %}{% endblock %} - Python Flask</title>
+    {% block css %}{% endblock %}
+  </head>
+  <body>
+    {% block body %}
+    
+    <h1>Azure Active Directory User Authentication with Python Flask</h1>
+
+    <main role="main">
+      {% block content %}{% endblock %}
+    </main>
+
+    {% block js %}{% endblock %}
+
+    {% endblock %}    
+  </body>
+</html>
