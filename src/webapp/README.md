@@ -61,16 +61,15 @@ Use these settings in your Enterprise Application for this sample app.
 
 Open the _default\_settings.py_ file and modify the three Azure Active Directory configuration properties using the values from your [app's registration in the Azure portal](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app).
 
-- `CLIENT_ID`: `"Application (client) ID"`
-- `CLIENT_CREDENTIAL`: `"********"`
-- `AUTHORITY`: `"https://login.microsoftonline.com/{your tenant's 'Primary domain' or 'Tenant ID'}"`
-
-For example, that configuration might look like the following:
-
 ```python
-CLIENT_ID = "8a193f2d-e89d-c577-81b7-145f76344a77"
-CLIENT_CREDENTIAL = "jaPk7Q~NeKvlrrCj2_0tl~q-PR~o9Tp10W88"
-AUTHORITY = "https://login.microsoftonline.com/contoso.onmicrosoft.com"
+# 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+CLIENT_ID = ""
+
+# Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
+CLIENT_CREDENTIAL = ""
+
+# Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
+AUTHORITY = ""
 ```
 
 ### 3. Install package(s)
