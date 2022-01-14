@@ -89,10 +89,9 @@ pip install -r requirements.txt
 python app.py
 ```
 
-## If everything worked, the sample you should receive a response similar to this:
+If everything worked, the sample you should receive a response similar to this:
 
 ```console
-$ python app.py
 {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users/$entity",
   "businessPhones": ["+1 (999) 5551001"],
@@ -109,16 +108,10 @@ $ python app.py
 }
 ```
 
-### Generating a valid access token
-
-Follow the instructions in [Gaining consent for the middle-tier application](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow#gaining-consent-for-the-middle-tier-application), including setting the API's app registration manifest value of **knownClientApplications**.
 
 ## About the code
 
-This Node.js application uses the Express web framework. The app has a single route that requires an access token. The access token will be automatically validated by MSAL:
-- A missing or invalid (expired, wrong audience, etc) token will result in a `401` response.
-- An otherwise valid token without the proper scope will result in a `403` response.
-- A valid token with the proper scope of `user_impersonation` will be accepted, and the token will then be exchanged in an on-behalf-of OAuth flow to call to Microsoft Graph. The results of the Microsoft Graph call are then returned as the results of the API call.
+This Python application will request a user to authenticate via the web browser. Upon successful authentication a request to the Graph API will be made and the response will be displayed.
 
 ## Reporting problems
 
