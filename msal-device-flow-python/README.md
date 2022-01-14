@@ -21,7 +21,7 @@ urlFragment: ms-identity-docs-code-app-device-code-python
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 -->
 
-This demo shows how a client application in Python can call a Graph API as the authenticated user.
+This demo shows how a Python console application can authenticate a user via the Device Code flow and then makea request to the Graph API as the authenticated user.
 
 ```console
 $ python app.py
