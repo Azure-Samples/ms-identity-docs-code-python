@@ -11,8 +11,13 @@ import requests
 
 # MSAL configs
 config = {
+    # Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
 	"authority": "",
+
+    # 'Application (client) ID' of app registration in Azure portal - this value is a GUID
 	"client_id": "",
+
+    # The User.Read scope is needed for the Graph API request
 	"scopes": ["User.Read"]
 }
 
