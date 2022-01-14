@@ -56,7 +56,7 @@ Use these settings in your app registration.
 
 | App registration <br/> setting    | Value for this sample app                                                    | Notes                                                                                              |
 |:---------------------------------:|:-----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
-| **Name**                          | `Python Device Flow App`                                                     | Suggested value for this sample. <br/> You can change the app name at any time.                    |
+| **Name**                          | `Python Device Code Flow App`                                                | Suggested value for this sample. <br/> You can change the app name at any time.                    |
 | **Supported account types**       | **Accounts in this organizational directory only (Single tenant)**           | Suggested value for this sample.                                                                   |
 | **Platform type**                 | _None_                                                                       | No redirect URI required; don't select a platform.                                                 |
 | **Allow public client flows**     | **Yes**                                                                      | Required value for this sample.                                                                    |
