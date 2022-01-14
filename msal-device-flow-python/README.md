@@ -66,18 +66,16 @@ Use these settings in your app registration.
 ### 2. Update code sample with app registration values
 
 ```python
-  # Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
-	"authority": "",
+# Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
+"authority": "",
 
-  # 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-	"client_id": "",
+# 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+"client_id": ""
 ```
-
-
 
 ### 3. Install package(s)
 
-To install Python libraries:
+To install MSAL libraries:
 
 ```bash
 pip install -r requirements.txt
@@ -86,7 +84,7 @@ pip install -r requirements.txt
 ## Run the application
 
 ```bash
-python app.py
+python3 app.py
 ```
 
 If everything worked, the sample you should receive a response similar to this:
@@ -107,7 +105,6 @@ If everything worked, the sample you should receive a response similar to this:
   "id": "e3a49d8b-d849-48eb-9947-37c1f9589812"
 }
 ```
-
 
 ## About the code
 
