@@ -13,13 +13,14 @@ import requests
 config = {
     # Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
     "authority": "",
-
     # 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-    "client_id": ""
+    "client_id": "",
 }
 
 # Create a MSAL public client application
-msalClientApp = msal.PublicClientApplication(config["client_id"], authority=config["authority"])
+msalClientApp = msal.PublicClientApplication(
+    config["client_id"], authority=config["authority"]
+)
 
 # Initialize the Device Code flow for the necessary scope(s)
 deviceFlow = msalClientApp.initiate_device_flow(scopes=["User.Read"])
@@ -32,7 +33,9 @@ msalResponse = msalClientApp.acquire_token_by_device_flow(deviceFlow)
 
 if "access_token" in msalResponse:
     # Make an HTTP GET request to the Graph API using the access token and display the response
-    print(requests.get(
-        "https://graph.microsoft.com/v1.0/me",
-        headers={"Authorization": f"Bearer {msalResponse['access_token']}"},
-    ).json())
+    print(
+        requests.get(
+            "https://graph.microsoft.com/v1.0/me",
+            headers={"Authorization": "Bearer " + msalResponse["access_token"]},
+        ).json()
+    )
