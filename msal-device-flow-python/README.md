@@ -21,10 +21,11 @@ urlFragment: ms-identity-docs-code-app-device-code-python
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 -->
 
-This demo shows how a Python console application can authenticate a user via the Device Code flow and then makea request to the Graph API as the authenticated user.
+This demo shows how a Python console application can authenticate a user via the Device Code flow and then make a request to the Graph API as the authenticated user at the terminal.
 
 ```console
-$ python app.py
+$ python3 app.py
+To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code XXXXXXXXX to authenticate.
 {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users/$entity",
   "businessPhones": ["+1 (999) 5551001"],
@@ -87,7 +88,7 @@ pip install -r requirements.txt
 python3 app.py
 ```
 
-If everything worked, the sample you should receive a response similar to this:
+Follow the device code flow instructions that are presented. If everything worked, you should receive a response similar to this:
 
 ```console
 {
