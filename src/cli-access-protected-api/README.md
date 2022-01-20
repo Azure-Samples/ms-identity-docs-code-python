@@ -15,91 +15,121 @@ urlFragment: ms-identity-docs-code-cli-python
 ---
 -->
 
-# Python console application - Access protected API
+# Python | console | protected web API access (Microsoft Graph) | Microsoft identity platform
+
+<!-- Build badges here
+![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
+-->
 
 > This sample application backs one or more technical articles on docs.microsoft.com.
 
-This sample shows how a python console application can access a protected API, as its own identity, using the [Microsoft Autentication Library (MSAL) for Python](https://github.com/AzureAD/microsoft-authentication-library-for-python). This scenario supports usages such as cron jobs and also direct command line invocation.
+This sample shows how a Python console application can access a protected API, as its own identity, using the [Microsoft Autentication Library (MSAL) for Python](https://github.com/AzureAD/microsoft-authentication-library-for-python). This scenario supports usages such as cron jobs and also direct command line invocation.
 
-<!-- IMAGE or CONSOLE OUTPUT of running/executed app -->
-
-## Prerequisites
-
-- Python 3.8+
-- [Appropriate registered app in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/scenario-daemon-app-registration)
-
-## Running the app (without installing)
-
-Install application runtime dependencies:
-
-```bash
-pip install -r dev-requirements.txt
-```
-
-Run the application:
-
-```bash
-python3 cli.py -t <your-domain>.onmicrosoft.com -c <your-app-client-id> -o <your-app-object-id> -s <a non-expired app secret>
-```
-
-Example of the above:
-
-```bash
-python3 cli.py -t contoso.onmicrosoft.com -c 714c4653-8063-4a37-83bb-334a7fcfa389 -o cf43d75e-675d-4f3b-9f5e-571fa0922262 -s aVp7Q~CQP_4oSkH~KGDRn.z3X920EipYokQBO
-```
-
-```output
+```console
+$ python3 cli.py
 Could not find a cached token, so fetching a new one.
 Graph API call result: {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-  "id": "cf43d75e-675d-4f3b-9f5e-571fa0922262",
+  "id": "6ed9c555-6dfd-4f35-b832-f1f634c0b876",
   "deletedDateTime": null,
-  "appId": "714c4653-8063-4a37-83bb-334a7fcfa389",
-  "createdDateTime": "2021-11-11T20:57:24Z",
-  "displayName": "python-cli-app",
-  "publisherDomain": "contoso.onmicrosoft.com",
-  "signInAudience": "AzureADMyOrg",
+  "appId": "59c06144-a668-4828-9ca8-ed6e117c8344",
+  "applicationTemplateId": null,
+  "disabledByMicrosoftStatus": null,
+  "createdDateTime": "2021-01-17T15:30:55Z",
+  "displayName": "python-cli",
+  "description": null,
+  "groupMembershipClaims": null,
   ...
 }
 ```
 
-## Alternative: Running the app (with installation)
+## Prerequisites
 
-Build and install the `msal-py-cli` python module.
+- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- Python 3
 
-```bash
-pip install .
+## Setup
+
+### 1. Register the app
+
+First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the application.
+
+Use these settings in your app registration.
+
+| App registration <br/> setting   | Value for this sample app                                          | Notes                                                                            |
+|:--------------------------------:|:-------------------------------------------------------------------|:---------------------------------------------------------------------------------|
+| **Name**                         | `python-cli`                                                       | Suggested value for this sample. <br/> You can change the app name at any time.  |
+| **Supported account types**      | **Accounts in this organizational directory only (Single tenant)** | Suggested value for this sample.                                                 |
+| **Platform type**                | _None_                                                             | No redirect URI required; don't select a platform.                               |
+
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+
+### 2. Update code sample with app registration values
+
+```python
+# Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
+"authority": "",
+# 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+"client_id": "",
+# Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
+"client_secret": "",
+# Client 'Object ID' of app registration in Azure portal - this value is a GUID
+"client_objectid": "",
 ```
 
-Run the application:
+### 3. Install package(s)
+
+To install MSAL libraries:
 
 ```bash
-msal-py-cli -t <your-domain>.onmicrosoft.com -c <your-app-client-id> -o <your-app-object-id> -s <a non-expired app secret>
+pip install -r requirements.txt
 ```
 
-Uninstall the application:
+## Run the application
 
 ```bash
-pip uninstall msal-py-cli
+python3 app.py
 ```
 
-## About the sample app
+If everything worked, you should receive a response similar to this:
+
+```console
+Could not find a cached token, so fetching a new one.
+Graph API call result: {
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
+  "id": "6ed9c555-6dfd-4f35-b832-f1f634c0b876",
+  "deletedDateTime": null,
+  "appId": "59c06144-a668-4828-9ca8-ed6e117c8344",
+  "applicationTemplateId": null,
+  "disabledByMicrosoftStatus": null,
+  "createdDateTime": "2021-01-17T15:30:55Z",
+  "displayName": "python-cli",
+  "description": null,
+  "groupMembershipClaims": null,
+  ...
+}
+```
+
+## About the code
 
 The python application will use the provided credentials, retrieve a token scoped specifically for the Microsoft Graph API, and will use that token to access it's own application registration information.
-
-<!-- OPTIONAL: Image or ASCII diagram of app and/or auth flow. -->
 
 ## Reporting problems
 
 ### Sample app not working?
 
-If you can't get the sample working and you've already searched the issues in the sample's repository on GitHub, open an issue in its repo to report the problem.
+If you can't get the sample working, you've checked [Stack Overflow](http://stackoverflow.com/questions/tagged/msal), and you've already searched the issues in this sample's repository, open an issue report the problem.
 
-1. Search the [Issues](https://github.com/Azure-Samples/ms-identity-docs-code-python/issues) in the repository - your problem might already have been reported or have an answer.
-1. Nothing similar? [Open an issue](https://github.com/Azure-Samples/ms-identity-docs-code-python/issues/new) that clearly explains the problem you're having running the sample app.
+1. Search the [GitHub issues](../../issues) in the repository - your problem might already have been reported or have an answer.
+1. Nothing similar? [Open an issue](../../issues/new) that clearly explains the problem you're having running the sample app.
 
 ### All other issues
 
-:warning: WARNING: Any issue _not_ limited to running this or another sample app will be closed without being addressed.
-
+> :warning: WARNING: Any issue in this repository _not_ limited to running one of its sample apps will be closed without being addressed.
 For all other requests, see [Support and help options for developers | Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/developer-support-help-options).
+
+## Contributing
+
+If you'd like to contribute to this sample, see [CONTRIBUTING.MD](/CONTRIBUTING.md).
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
