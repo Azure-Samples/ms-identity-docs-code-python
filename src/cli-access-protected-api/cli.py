@@ -8,103 +8,59 @@ An example of this might be a nightly script that runs a query against a
 database, and based on the results sends an email to multiple people in the
 organization.
 """
-import sys
 import json
 import requests
 
-from click import command, option
 # <ms_docref_import_modules>
 from msal import ConfidentialClientApplication
+
 # </ms_docref_import_modules>
 
-@command()
-@option(
-    "-t",
-    "--tenant",
-    type=str,
-    required=True,
-    prompt='Enter the tenant\'s "Primary domain" in which this application'
-    " was registered. Example: contoso.onmicrosoft.com",
-    help='Either the "Primary domain" or "Tenant ID" for the Azure Active '
-    "Directory instance this application was registered in. Example: "
-    "contoso.onmicrosoft.com or 6ad988bf-86f1-61af-31ab-6d7cd011db46",
-)
-@option(
-    "-c",
-    "--client-id",
-    type=str,
-    required=True,
-    prompt='Enter this application\'s "Application (client) ID"',
-    help='The "Application (client) ID" (GUID) found in this '
-    "application's app registration in Azure Active Directory.",
-)
-@option(
-    "-o",
-    "--object-id",
-    type=str,
-    required=True,
-    prompt='Enter this application\'s "Object ID"',
-    help='The "Object ID" (GUID) found in this application\'s app '
-    "registration in Azure Active Directory.",
-)
-@option(
-    "-s",
-    "--secret",
-    type=str,
-    required=True,
-    hide_input=True,
-    prompt='Enter one of this application\'s "Client secrets"',
-    help='Any of the non-expired "Client secrets" value found in this '
-    "application's app registration in Azure Active Directory.",
-)
-def main(tenant: str, client_id: str, object_id: str, secret: str):
-    """Example of MSAL for Python usage."""
+# MSAL configs
+config = {
+    # Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
+    "authority": "",
+    # 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+    "client_id": "",
+    # Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
+    "client_secret": "",
+    # Client 'Object ID' of app registration in Azure portal - this value is a GUID
+    "client_objectid": "",
+}
 
-    # https://login.microsoft.com/contoso.onmicrosoft.com
-    # or https://login.microsoft.com/6ad988bf-86f1-61af-31ab-6d7cd011db46
-    authority = f"https://login.microsoft.com/{tenant}"
+# This app instance should be a long-lived instance, as it maintains
+# its own in-memory token cache (by default)
+app = ConfidentialClientApplication(
+    client_id=config["client_id"],
+    authority=config["authority"],
+    client_credential=config["client_secret"],
+)
 
-    # This app instance should be a long-lived instance, as it maintains
-    # its own in-memory token cache (by default)
-    app = ConfidentialClientApplication(
-        client_id=client_id, authority=authority, client_credential=secret
+# First check for an existing token in the cache and/or refresh if needed
+# <ms_docref_get_graph_token>
+result = app.acquire_token_silent(
+    scopes=["https://graph.microsoft.com/.default"], account=None
+)
+
+# If token could not be found in the cache or could not be refreshed, then
+# acquire a new token
+if not result:
+    result = app.acquire_token_for_client(
+        scopes=["https://graph.microsoft.com/.default"]
     )
 
-    # First check for an existing token in the cache and/or refresh if needed
-    # <ms_docref_get_graph_token>
-    result = app.acquire_token_silent(
-        scopes=["https://graph.microsoft.com/.default"], account=None
-    )
+    print("Could not find a cached token, so fetching a new one.")
+# </ms_docref_get_graph_token>
+# <ms_docref_make_graph_call>
+if "access_token" in result:
+    # Get this app registration's information
+    response = requests.get(
+        f"https://graph.microsoft.com/v1.0/applications/{config['client_objectid']}",
+        headers={"Authorization": f'Bearer {result["access_token"]}'},
+    ).json()
+    print(f"Graph API call result: {json.dumps(response, indent=2)}")
 
-    # If token could not be found in the cache or could not be refreshed, then
-    # acquire a new token
-    if not result:
-        result = app.acquire_token_for_client(
-            scopes=["https://graph.microsoft.com/.default"]
-        )
-
-        print("Could not find a cached token, so fetching a new one.")
-    #  </ms_docref_get_graph_token>  
-    #  <ms_docref_make_graph_call>
-    if "access_token" in result:
-        # Get this app registration's information
-        response = requests.get(
-            f"https://graph.microsoft.com/v1.0/applications/{object_id}",
-            headers={"Authorization": f'Bearer {result["access_token"]}'},
-        ).json()
-        print(f"Graph API call result: {json.dumps(response, indent=2)}")
-
-    else:
-        print(
-            "Error encountered when requesting access token: "
-            f"{result.get('error')}"
-        )
-        print(result.get("error_description"))
-        return 1
-
-    return 0
-    # </ms_docref_make_graph_call>
-
-
-if __name__ == "__main__":
-    sys.exit(main("", "", "", ""))
+else:
+    print("Error encountered when requesting access token: " f"{result.get('error')}")
+    print(result.get("error_description"))
+# </ms_docref_make_graph_call>
