@@ -6,7 +6,7 @@ languages:
 - Python
 page_type: sample
 name: "Python console application that makes a request to the Graph API via the Device Code flow"
-description: "This sample Python application shows a console application which makes a rqeuest to Microsoft Graph using the Device Code flow."
+description: "This Python console application uses the device code flow for authentication and then makes a request to Microsoft Graph for the user's profile data."
 products:
 - azure
 - azure-active-directory
@@ -21,7 +21,7 @@ urlFragment: ms-identity-docs-code-app-device-code-python
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 -->
 
-This demo shows how a Python console application can authenticate a user via the Device Code flow and then make a request to the Graph API as the authenticated user at the terminal.
+This Python console application authenticates a user via the device code flow, and then makes a request to the Graph API as the authenticated user. The response to the request is printed to the terminal.
 
 ```console
 $ python3 app.py
@@ -40,7 +40,6 @@ To sign in, use a web browser to open the page https://microsoft.com/devicelogin
   "userPrincipalName": "contoso_employee@contoso.com",
   "id": "e3a49d8b-d849-48eb-9947-37c1f9589812"
 }
-
 ```
 ## Prerequisites
 
@@ -56,7 +55,7 @@ First, complete the steps in [Register an application with the Microsoft identit
 Use these settings in your app registration.
 
 | App registration <br/> setting    | Value for this sample app                                                    | Notes                                                                                              |
-|:---------------------------------:|:-----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
+|---------------------------------:|:-----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
 | **Name**                          | `Python Device Code Flow App`                                                | Suggested value for this sample. <br/> You can change the app name at any time.                    |
 | **Supported account types**       | **Accounts in this organizational directory only (Single tenant)**           | Suggested value for this sample.                                                                   |
 | **Platform type**                 | _None_                                                                       | No redirect URI required; don't select a platform.                                                 |
@@ -90,7 +89,7 @@ python3 app.py
 
 Follow the device code flow instructions that are presented. If everything worked, you should receive a response similar to this:
 
-```console
+```json
 {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users/$entity",
   "businessPhones": ["+1 (999) 5551001"],
