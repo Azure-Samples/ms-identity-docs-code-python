@@ -13,8 +13,9 @@ import json
 import requests
 
 from click import command, option
+# <ms_docref_import_modules>
 from msal import ConfidentialClientApplication
-
+# </ms_docref_import_modules>
 
 @command()
 @option(
@@ -70,6 +71,7 @@ def main(tenant: str, client_id: str, object_id: str, secret: str):
     )
 
     # First check for an existing token in the cache and/or refresh if needed
+    # <ms_docref_get_graph_token>
     result = app.acquire_token_silent(
         scopes=["https://graph.microsoft.com/.default"], account=None
     )
@@ -82,7 +84,8 @@ def main(tenant: str, client_id: str, object_id: str, secret: str):
         )
 
         print("Could not find a cached token, so fetching a new one.")
-
+    #  </ms_docref_get_graph_token>  
+    #  <ms_docref_make_graph_call>
     if "access_token" in result:
         # Get this app registration's information
         response = requests.get(
@@ -100,6 +103,7 @@ def main(tenant: str, client_id: str, object_id: str, secret: str):
         return 1
 
     return 0
+    # </ms_docref_make_graph_call>
 
 
 if __name__ == "__main__":
