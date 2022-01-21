@@ -108,7 +108,7 @@ Follow the device code flow instructions that are presented. If everything worke
 
 ## About the code
 
-This Python application will request a user to authenticate via the web browser. Upon successful authentication a request to the Graph API will be made and the response will be displayed.
+This Python console application prompts the user to sign in via their device using a code provided by Microsoft Authentication Library (MSAL).  Upon successful authentication, the 'Requests' library then makes an HTTP GET request to the Microsoft Graph /me endpoint with the user's access token in the HTTP header.  The response from the GET request is then displayed to the console.
 
 ## Reporting problems
 
