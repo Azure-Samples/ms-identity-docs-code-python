@@ -34,7 +34,7 @@ Hello, world. You were able to access this because you provided a valid access t
 - Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
 - Python 3.8+
 - [Azure Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local)
-- Empty, Python 3.8 Function App (v4) deployed to Azure and the permissions or role required to modify its settings
+- An empty, [Python 3.8 Function App (v4) deployed to Azure](https://docs.microsoft.com/azure/azure-functions/create-first-function-cli-python) and the permissions or role required to modify its settings
 
 ## Setup
 
