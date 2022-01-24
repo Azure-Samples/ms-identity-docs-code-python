@@ -24,15 +24,18 @@ from typing import Any
 # Used to make an http request to graph
 import requests
 
+#<ms_docref_import_msal>
 # Import Microsoft Authentication Library (MSAL) for Python
 import msal
+#</ms_docref_import_msal>
 
+# <ms_docref_import_modules>
 # Flask imports to handle render templates and session access
 from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.exceptions import Forbidden, Unauthorized
 from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
-
+# </ms_docref_import_modules>
 
 def create_app():
     """Configure the flask application"""
@@ -241,8 +244,8 @@ def create_app():
         # user's session. This shouldn't be cached across user sessions.
         http_cache: dict = session.get("msal_http_response_cache", {})
 
-        # Create an MSAL client (using app configuration values) and providing
-        # our token cache.
+        #<ms_docref_configure_app>
+        # Create an MSAL client using the app's configuration values and provide the token cache.
         msal_client = msal.ConfidentialClientApplication(
             app.config.get("CLIENT_ID"),
             authority=app.config.get("AUTHORITY"),
@@ -250,7 +253,9 @@ def create_app():
             token_cache=token_cache,
             http_cache=http_cache,
         )
+        #</ms_docref_configure_app>
 
+        #<ms_docref_acquire_token>
         # Invoke the acquire_token flow on the MSAL client for the requested
         # scope and account. This will use the cache to either retrieve an
         # existing valid token or will use the refresh token in the cache to
@@ -269,6 +274,7 @@ def create_app():
         if token_cache.has_state_changed:
             session["token_cache"] = token_cache.serialize()
         session["msal_http_response_cache"] = http_cache
+        #</ms_docref_acquire_token>
 
         # If 'result' comes back with an error, that means that the user will
         # need to go through the auth grant flow again, as the tokens in the
@@ -280,18 +286,21 @@ def create_app():
         # authentication when reaching this based on the MSAL token cache
         # contents.
 
-        # Simple HTTP Get to graph showing the usage of the retrieved access
-        # token
+        # <ms_docref_call_ms_graph>
+        # Simple HTTP Get to graph showing the usage of the retrieved access token
         response = requests.get(
             "https://graph.microsoft.com/v1.0/me",
             headers={"Authorization": f"Bearer {result['access_token']}"},
         ).json()
 
-        # Show the "Graph" view
+        # Show the "Graph" view for all users, unauthenticated or not
         return render_template("authenticated/graph.html", graphCallResponse=response)
+        # </ms_docref_call_ms_graph>
 
+    # <ms_docref_require_admin_role_authNZ>
+    # This route requires prior authentication and authorization. 
+    # Users should have the application-defined, admin role assigned.
     @app.get("/admin")
-    # This route requires prior authentication and authorization
     def admin():
         # If the session doesn't currently contain a "user" entry that means we
         # haven't completed the auth code flow yet. Raise an Unauthorized error,
@@ -315,11 +324,17 @@ def create_app():
         user_claims = session["user"]["id_token_claims"]
         if "roles" not in user_claims or "admin" not in user_claims["roles"]:
             raise Forbidden("User is missing a required role.")
+    # </ms_docref_require_admin_role_authNZ>
 
-        # Show the "Admin" view
+    # <ms_docref_display_admin_view_content>
+        # Upon successful authentication, show the "Admin" view
         return render_template(
             "authenticated/admin.html", graphCallResponse=user_claims
         )
+    # </ms_docref_display_admin_view_content>
+
+
+    # <ms_docref_logout_user>
 
     @app.get("/logout")
     def logout():
@@ -348,3 +363,5 @@ def create_app():
         return redirect(url_for("index"))
 
     return app
+
+ # <ms_docref_logout_user>
