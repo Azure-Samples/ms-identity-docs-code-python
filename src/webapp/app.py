@@ -24,10 +24,10 @@ from typing import Any
 # Used to make an http request to graph
 import requests
 
-#<ms_docref_import_msal>
+# <ms_docref_import_msal>
 # Import Microsoft Authentication Library (MSAL) for Python
 import msal
-#</ms_docref_import_msal>
+# </ms_docref_import_msal>
 
 # <ms_docref_import_modules>
 # Flask imports to handle render templates and session access
@@ -244,8 +244,9 @@ def create_app():
         # user's session. This shouldn't be cached across user sessions.
         http_cache: dict = session.get("msal_http_response_cache", {})
 
-        #<ms_docref_configure_app>
-        # Create an MSAL client using the app's configuration values and provide the token cache.
+        # <ms_docref_configure_app>
+        # Create an MSAL client using the app's configuration values and provide
+        # the token cache.
         msal_client = msal.ConfidentialClientApplication(
             app.config.get("CLIENT_ID"),
             authority=app.config.get("AUTHORITY"),
@@ -253,9 +254,9 @@ def create_app():
             token_cache=token_cache,
             http_cache=http_cache,
         )
-        #</ms_docref_configure_app>
+        # </ms_docref_configure_app>
 
-        #<ms_docref_acquire_token>
+        # <ms_docref_acquire_token>
         # Invoke the acquire_token flow on the MSAL client for the requested
         # scope and account. This will use the cache to either retrieve an
         # existing valid token or will use the refresh token in the cache to
@@ -274,7 +275,7 @@ def create_app():
         if token_cache.has_state_changed:
             session["token_cache"] = token_cache.serialize()
         session["msal_http_response_cache"] = http_cache
-        #</ms_docref_acquire_token>
+        # </ms_docref_acquire_token>
 
         # If 'result' comes back with an error, that means that the user will
         # need to go through the auth grant flow again, as the tokens in the
@@ -293,7 +294,7 @@ def create_app():
             headers={"Authorization": f"Bearer {result['access_token']}"},
         ).json()
 
-        # Show the "Graph" view for all users, unauthenticated or not
+        # Show the "Graph" view for authenticated users
         return render_template("authenticated/graph.html", graphCallResponse=response)
         # </ms_docref_call_ms_graph>
 
@@ -333,9 +334,7 @@ def create_app():
         )
     # </ms_docref_display_admin_view_content>
 
-
     # <ms_docref_logout_user>
-
     @app.get("/logout")
     def logout():
         # If we had anything in our session tied to auth, completely remove it.
@@ -362,5 +361,5 @@ def create_app():
         # happen without the user needing to re-enter their credentials.
         return redirect(url_for("index"))
 
-    return ap
+    return app
     # </ms_docref_logout_user>
