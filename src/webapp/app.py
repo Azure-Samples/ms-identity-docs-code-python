@@ -362,6 +362,5 @@ def create_app():
         # happen without the user needing to re-enter their credentials.
         return redirect(url_for("index"))
 
-    return app
-
- # <ms_docref_logout_user>
+    return ap
+    # </ms_docref_logout_user>
