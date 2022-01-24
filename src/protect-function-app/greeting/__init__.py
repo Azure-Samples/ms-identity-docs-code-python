@@ -6,7 +6,7 @@ referred to as "Easy Auth") of Azure Functions, offloads part of the authenticat
 and authorization process by ensuring that every request to this Azure Function has
 an access token. That access token has had its signature, issuer (iss), expiry
 dates (exp, nbf), and audience (aud) validated. This means all that is left to
-perform is any per-function authorization realted to your application.
+perform is any per-function authorization related to your application.
 """
 
 import jwt
