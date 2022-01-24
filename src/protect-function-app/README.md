@@ -56,34 +56,34 @@ Use these settings in your app registration.
 ### 2. Enable Function App Authentication
 
 1. Open the existing Function App in the Azure portal.
-1. Click on **Authentication** and then **Add identity provider**
+1. Click on **Authentication** and then **Add identity provider**.
 1. Use these settings in your identity provider configuration.
 
-  | Identity provider setting       | Value for this sample app                                | Notes                                                                            |
-  |--------------------------------:|:---------------------------------------------------------|:---------------------------------------------------------------------------------|
-  | **Identity provider**           | **Microsoft**                                            | Required value for this sample.                                                  |
-  | **App registration type**       | **Provide the details of an existing app registration**  | Required value for this sample.                                                  |
-  | **Application (client) ID**     | _<client-id>_                                            | Required value for this sample. <br/> 'Application (client) ID' of app registration in Azure portal - this value is a GUID               |
-  | **Client secret (recommended)** | _None_                                                   | Suggested value for this sample. <br/> This sample doesn't require this feature. |
-  | **Issuer URL**                  | `https://sts.windows.net/<Tenant ID>/v2.0`               | Required value for this sample. <br/> Update to include 'Tenant ID' of your Azure AD instance - this value is a GUID                     |
-  | **Allowed token audiences**     | `api://<client-id>`                                      | Required value for this sample. <br/> 'Application ID URI' of app registration in Azure portal - this value typically starts with api:// |
-  | **Restrict access**             | **Require authentication**                               | Required value for this sample.                                                  |
-  | **Unauthenticated requests**    | **HTTP 401 Unauthorized: recommended for APIs**          | Suggested value for this sample.                                                 |
-  | **Token store**                 | _Unselected_                                             | Suggested value for this sample. |
+   | Identity provider setting       | Value for this sample app                                | Notes                                                                            |
+   |--------------------------------:|:---------------------------------------------------------|:---------------------------------------------------------------------------------|
+   | **Identity provider**           | **Microsoft**                                            | Required value for this sample.                                                  |
+   | **App registration type**       | **Provide the details of an existing app registration**  | Required value for this sample.                                                  |
+   | **Application (client) ID**     | _<client-id>_                                            | Required value for this sample. <br/> 'Application (client) ID' of app registration in Azure portal - this value is a GUID               |
+   | **Client secret (recommended)** | _None_                                                   | Suggested value for this sample. <br/> This sample doesn't require this feature. |
+   | **Issuer URL**                  | `https://sts.windows.net/<Tenant ID>/v2.0`               | Required value for this sample. <br/> Update to include 'Tenant ID' of your Azure AD instance - this value is a GUID                     |
+   | **Allowed token audiences**     | `api://<client-id>`                                      | Required value for this sample. <br/> 'Application ID URI' of app registration in Azure portal - this value typically starts with api:// |
+   | **Restrict access**             | **Require authentication**                               | Required value for this sample.                                                  |
+   | **Unauthenticated requests**    | **HTTP 401 Unauthorized: recommended for APIs**          | Suggested value for this sample.                                                 |
+   | **Token store**                 | _Unselected_                                             | Suggested value for this sample. |
 
-  > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+   > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
 
-1. Click **Add**
+1. Click **Add**.
 
 ### 3. Deploy the Function App
 
 ```console
-func azure functionapp publish <your-existing-Function-App-name>
+func azure functionapp publish <your-Function-App-name>
 ```
 
 ## Access the API
 
-Using Postman, curl, or a similar application, issue an HTTP GET request to https://<your-existing-Function-App-name>.azurewebsites.net/api/greeting with an `Authorization` header of `Bearer {VALID-ACCESS-TOKEN}`.
+Using Postman, curl, or a similar application, issue an HTTP GET request to https://<your-Function-App-name>.azurewebsites.net/api/greeting with an `Authorization` header of `Bearer {VALID-ACCESS-TOKEN}`.
 
 For example, if you use curl and everything worked, you should receive a response from the Azure Function similar to this.
 
