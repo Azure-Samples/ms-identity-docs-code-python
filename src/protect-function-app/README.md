@@ -94,15 +94,19 @@ Hello, world. You were able to access this because you provided a valid access t
 
 ## About the code
 
-This Azure Function is an HTTP trigger written in Python and uses the built-in authentication feature of Azure Functions to offload basic JWT access token validation. Requests that make it through the built-in authentication feature of Azure Functions are then routed to the Python code, which then applies additional access token validation checking for a specific scope.
+This Azure Function is an anonymous HTTP trigger written in Python and uses the built-in [Authentication and authorization in Azure Functions](https://docs.microsoft.com/azure/app-service/overview-authentication-authorization) feature to offload fundamental JWT access token validation. Requests that make it through the built-in authentication feature of Azure Functions are then routed to the Python code, which applies additional access token validation checking for a specific scope.
 
-- A missing or invalid (expired, wrong audience, etc) token will result in a `401` response. (Issued by Azure Functions authentication)
+- A missing or invalid (expired, wrong audience, etc) token will result in a `401` response. (Handled by Azure Functions authentication)
 - An otherwise valid token without the proper scope will result in a 403 response.
 - A valid token with the proper scope of `Greeting.Read` will result in the "Hello, world" message.
 
 ### Running locally
 
 At the time of this writing, Function App authentication does not support a local development experience that has parity with the on-Azure runtime. You can still execute this locally with `func start` but the authentication functionality provided by the Function App service on Azure will not be invoked; all JWT token validation for authorization (signature, iss, exp, aud) will be skipped.
+
+#### Web server gateway interface (WSGI) alternative
+
+In Python, it is common to use a web framework, such as Django or Flask, to handle APIs. While this sample doesn't show it, Azure Functions for Python does support [WSGI integration](https://docs.microsoft.com/python/api/azure-functions/azure.functions.wsgimiddleware), allowing you to use the web framework as your HTTP request pipeline. Introducing WSGI into this scenario is out of scope for this introduction, but doing so would allow you to use framework-specific authentication mechanisms that might feel more native for your Python API.
 
 ## Reporting problems
 

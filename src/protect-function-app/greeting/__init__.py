@@ -1,5 +1,5 @@
 """
-This is an Azure Function that response at GET /api/greeting.
+This is an Azure Function that responds at GET /api/greeting.
 
 Using the built-in authentication and authorization capabilities (sometimes
 referred to as "Easy Auth") of Azure Functions, offloads part of the authentication
