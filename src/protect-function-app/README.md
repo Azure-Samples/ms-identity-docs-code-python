@@ -63,7 +63,7 @@ Use these settings in your app registration.
    |--------------------------------:|:---------------------------------------------------------|:---------------------------------------------------------------------------------|
    | **Identity provider**           | **Microsoft**                                            | Required value for this sample.                                                  |
    | **App registration type**       | **Provide the details of an existing app registration**  | Required value for this sample.                                                  |
-   | **Application (client) ID**     | _<client-id>_                                            | Required value for this sample. <br/> 'Application (client) ID' of app registration in Azure portal - this value is a GUID               |
+   | **Application (client) ID**     | `<client-id>`                                            | Required value for this sample. <br/> 'Application (client) ID' of app registration in Azure portal - this value is a GUID               |
    | **Client secret (recommended)** | _None_                                                   | Suggested value for this sample. <br/> This sample doesn't require this feature. |
    | **Issuer URL**                  | `https://sts.windows.net/<Tenant ID>/v2.0`               | Required value for this sample. <br/> Update to include 'Tenant ID' of your Azure AD instance - this value is a GUID                     |
    | **Allowed token audiences**     | `api://<client-id>`                                      | Required value for this sample. <br/> 'Application ID URI' of app registration in Azure portal - this value typically starts with api:// |
