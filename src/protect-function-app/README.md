@@ -34,7 +34,7 @@ Hello, world. You were able to access this because you provided a valid access t
 - Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
 - Python 3.8+
 - [Azure Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local)
-- An empty, [Python 3.8 Function App (v4) deployed to Azure](https://docs.microsoft.com/azure/azure-functions/create-first-function-cli-python) and the permissions or role required to modify its settings
+- An empty, [Python 3.8 Function app (v4) deployed to Azure](https://docs.microsoft.com/azure/azure-functions/create-first-function-cli-python) and the permissions or role required to modify its settings
 
 ## Setup
 
@@ -53,29 +53,27 @@ Use these settings in your app registration.
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
 
-### 2. Enable Function App Authentication
+### 2. Enable Function app authentication
 
-1. Open the existing Function App in the Azure portal.
-1. Click on **Authentication** and then **Add identity provider**.
-1. Use these settings in your identity provider configuration.
+Next, complete the steps in [Enable Azure Active Directory in your App Service app](https://docs.microsoft.com/azure/app-service/configure-authentication-provider-aad?toc=/azure/azure-functions/toc.json#-enable-azure-active-directory-in-your-app-service-app) to add Azure Active Directory as an identity provider for your API.
 
-   | Identity provider setting       | Value for this sample app                                | Notes                                                                            |
-   |--------------------------------:|:---------------------------------------------------------|:---------------------------------------------------------------------------------|
-   | **Identity provider**           | **Microsoft**                                            | Required value for this sample.                                                  |
-   | **App registration type**       | **Provide the details of an existing app registration**  | Required value for this sample.                                                  |
-   | **Application (client) ID**     | `<client-id>`                                            | Required value for this sample. <br/> 'Application (client) ID' of app registration in Azure portal - this value is a GUID               |
-   | **Client secret (recommended)** | _None_                                                   | Suggested value for this sample. <br/> This sample doesn't require this feature. |
-   | **Issuer URL**                  | `https://sts.windows.net/<Tenant ID>/v2.0`               | Required value for this sample. <br/> Update to include 'Tenant ID' of your Azure AD instance - this value is a GUID                     |
-   | **Allowed token audiences**     | `api://<client-id>`                                      | Required value for this sample. <br/> 'Application ID URI' of app registration in Azure portal - this value typically starts with api:// |
-   | **Restrict access**             | **Require authentication**                               | Required value for this sample.                                                  |
-   | **Unauthenticated requests**    | **HTTP 401 Unauthorized: recommended for APIs**          | Suggested value for this sample.                                                 |
-   | **Token store**                 | _Unselected_                                             | Suggested value for this sample. |
+Use these settings in your identity provider configuration.
 
-   > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+| Identity provider setting       | Value for this sample app                               | Notes                                                                            |
+|--------------------------------:|:--------------------------------------------------------|:---------------------------------------------------------------------------------|
+| **Identity provider**           | **Microsoft**                                           | Required value for this sample.                                                  |
+| **App registration type**       | **Provide the details of an existing app registration** | Required value for this sample.                                                  |
+| **Application (client) ID**     | `<client-id>`                                           | Required value for this sample. <br/> 'Application (client) ID' of the API's app registration in Azure portal - this value is a GUID     |
+| **Client secret (recommended)** | _None_                                                  | Suggested value for this sample. <br/> This sample doesn't require this feature. |
+| **Issuer URL**                  | `https://login.microsoftonline.com/<tenant-id>/v2.0`    | Required value for this sample. <br/> Update to include 'Tenant ID' of your Azure AD instance - this value is a GUID                     |
+| **Allowed token audiences**     | `api://<client-id>`                                     | Required value for this sample. <br/> 'Application ID URI' of app registration in Azure portal - this value typically starts with api:// |
+| **Restrict access**             | **Require authentication**                              | Required value for this sample.                                                  |
+| **Unauthenticated requests**    | **HTTP 401 Unauthorized: recommended for APIs**         | Suggested value for this sample.                                                 |
+| **Token store**                 | _Unselected_                                            | Suggested value for this sample.                                                 |
 
-1. Click **Add**.
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
 
-### 3. Deploy the Function App
+### 3. Deploy the Function app
 
 ```console
 func azure functionapp publish <your-Function-App-name>
@@ -83,7 +81,7 @@ func azure functionapp publish <your-Function-App-name>
 
 ## Access the API
 
-Using Postman, curl, or a similar application, issue an HTTP GET request to https://<your-Function-App-name>.azurewebsites.net/api/greeting with an `Authorization` header of `Bearer {VALID-ACCESS-TOKEN}`.
+Using Postman, curl, or a similar application, issue an HTTP GET request to https://<your-function-app-name>.azurewebsites.net/api/greeting with an `Authorization` header of `Bearer {VALID-ACCESS-TOKEN}`.
 
 For example, if you use curl and everything worked, you should receive a response from the Azure Function similar to this.
 
@@ -102,7 +100,7 @@ This Azure Function is an anonymous HTTP trigger written in Python and uses the 
 
 ### Running locally
 
-At the time of this writing, Function App authentication does not support a local development experience that has parity with the on-Azure runtime. You can still execute this locally with `func start` but the authentication functionality provided by the Function App service on Azure will not be invoked; all JWT token validation for authorization (signature, iss, exp, aud) will be skipped.
+At the time of this writing, Function app authentication does not support a local development experience that has parity with the on-Azure runtime. You can still execute this locally with `func start` but the authentication functionality provided by the Function app service on Azure will not be invoked; all JWT token validation for authorization (signature, iss, exp, aud) will be skipped.
 
 #### Web server gateway interface (WSGI) alternative
 
