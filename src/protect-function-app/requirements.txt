@@ -1,0 +1,2 @@
+azure-functions==1.8.0
+pyjwt==2.3.0
