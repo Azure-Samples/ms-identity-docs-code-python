@@ -34,8 +34,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     except jwt.PyJWTError:
         return func.HttpResponse("Bearer token not valid.", status_code=403)
 
-    # This API requires the "Greeting.Read" scope to be present, if it is not, then
-    # reject the request with a 403.
+    # This API endpoint requires the "Greeting.Read" scope to be present, if it is
+    # not, then reject the request with a 403.
     if "Greeting.Read" not in scopes.split(" "):
         return func.HttpResponse("Missing required scope.", status_code=403)
 
