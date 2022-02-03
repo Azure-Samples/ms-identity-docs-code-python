@@ -67,7 +67,7 @@ Use these settings in your app registration.
 ### 2. Update code sample with app registration values
 
 ```python
-# Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
+# Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
 "authority": "",
 # 'Application (client) ID' of app registration in Azure portal - this value is a GUID
 "client_id": "",
@@ -88,7 +88,7 @@ pip install -r requirements.txt
 ## Run the application
 
 ```bash
-python3 app.py
+python3 cli.py
 ```
 
 If everything worked, you should receive a response similar to this:
