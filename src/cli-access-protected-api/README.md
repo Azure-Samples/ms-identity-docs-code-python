@@ -88,7 +88,7 @@ pip install -r requirements.txt
 ## Run the application
 
 ```bash
-python3 app.py
+python3 cli.py
 ```
 
 If everything worked, you should receive a response similar to this:
