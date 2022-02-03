@@ -19,7 +19,7 @@ from msal import ConfidentialClientApplication
 # MSAL configs
 # <ms_docref_configure_msal>
 config = {
-    # Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
+    # Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
     "authority": "",
     # 'Application (client) ID' of app registration in Azure portal - this value is a GUID
     "client_id": "",
