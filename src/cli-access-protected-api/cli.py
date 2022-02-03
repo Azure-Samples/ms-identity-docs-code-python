@@ -32,11 +32,13 @@ config = {
 
 # This app instance should be a long-lived instance, as it maintains
 # its own in-memory token cache (by default)
+# <ms_docref_create_app_instance>
 app = ConfidentialClientApplication(
     client_id=config["client_id"],
     authority=config["authority"],
     client_credential=config["client_secret"],
 )
+# </ms_docref_create_app_instance>
 
 # First check for an existing token in the cache and/or refresh if needed
 # <ms_docref_get_graph_token>
