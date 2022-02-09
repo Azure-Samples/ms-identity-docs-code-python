@@ -14,7 +14,7 @@ products:
 urlFragment: ms-identity-docs-code-cli-python
 ---
 -->
-
+<!-- SAMPLE ID: DOCS-CODE-012 -->
 # Python | console | protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
@@ -23,7 +23,7 @@ urlFragment: ms-identity-docs-code-cli-python
 
 > This sample application backs one or more technical articles on docs.microsoft.com.
 
-This sample shows how a Python console application can access a protected API, as its own identity, using the [Microsoft Autentication Library (MSAL) for Python](https://github.com/AzureAD/microsoft-authentication-library-for-python). This scenario supports usages such as cron jobs and also direct command line invocation.
+This sample shows how a Python console application can access a protected API, as its own identity, using the [Microsoft Authentication Library (MSAL) for Python](https://github.com/AzureAD/microsoft-authentication-library-for-python). This scenario supports usages such as cron jobs and also direct command line invocation.
 
 ```console
 $ python3 cli.py
@@ -57,14 +57,16 @@ First, complete the steps in [Register an application with the Microsoft identit
 Use these settings in your app registration.
 
 | App registration <br/> setting   | Value for this sample app                                          | Notes                                                                            |
-|:--------------------------------:|:-------------------------------------------------------------------|:---------------------------------------------------------------------------------|
+|--------------------------------:|:-------------------------------------------------------------------|:---------------------------------------------------------------------------------|
 | **Name**                         | `python-cli`                                                       | Suggested value for this sample. <br/> You can change the app name at any time.  |
 | **Supported account types**      | **Accounts in this organizational directory only (Single tenant)** | Suggested value for this sample.                                                 |
 | **Platform type**                | _None_                                                             | No redirect URI required; don't select a platform.                               |
 
 > :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
 
-### 2. Update code sample with app registration values
+### 2. Update application code with values from app registration
+
+In _app.py_, update each variable with values from the app registration you created in the previous step.
 
 ```python
 # Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
@@ -79,7 +81,7 @@ Use these settings in your app registration.
 
 ### 3. Install package(s)
 
-To install MSAL libraries:
+Install MSAL and other required packages:
 
 ```bash
 pip install -r requirements.txt
@@ -91,7 +93,7 @@ pip install -r requirements.txt
 python3 cli.py
 ```
 
-If everything worked, you should receive a response similar to this:
+If everything worked, you should receive a response similar to this (output truncated for brevity):
 
 ```console
 Could not find a cached token, so fetching a new one.
@@ -112,7 +114,7 @@ Graph API call result: {
 
 ## About the code
 
-The python application will use the provided credentials, retrieve a token scoped specifically for the Microsoft Graph API, and will use that token to access it's own application registration information.
+This Python application uses a client secret as its credentials to retrieve an access token that's scoped specifically for the Microsoft Graph API, and then uses that token to access its own application registration information.
 
 ## Reporting problems
 
