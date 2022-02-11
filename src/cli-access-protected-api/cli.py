@@ -12,12 +12,13 @@ import json
 import requests
 
 # <ms_docref_import_modules>
+# Import the required MSAL for Python module(s)
 from msal import ConfidentialClientApplication
-
 # </ms_docref_import_modules>
 
-# MSAL configs
 # <ms_docref_configure_msal>
+# MSAL requires these values for interaction with the Microsoft identity platform.
+# Get the values from Azure portal > Azure Active Directory > App registrations > $YOUR_APP_NAME.
 config = {
     # Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
     "authority": "",
@@ -30,9 +31,9 @@ config = {
 }
 # </ms_docref_configure_msal>
 
-# This app instance should be a long-lived instance, as it maintains
-# its own in-memory token cache (by default)
 # <ms_docref_create_app_instance>
+# This app instance should be a long-lived instance because
+# it maintains its own in-memory token cache (the default).
 app = ConfidentialClientApplication(
     client_id=config["client_id"],
     authority=config["authority"],
@@ -40,14 +41,13 @@ app = ConfidentialClientApplication(
 )
 # </ms_docref_create_app_instance>
 
-# First check for an existing token in the cache and/or refresh if needed
 # <ms_docref_get_graph_token>
+# First, check for a token in the cache, refreshing it if needed
 result = app.acquire_token_silent(
     scopes=["https://graph.microsoft.com/.default"], account=None
 )
 
-# If token could not be found in the cache or could not be refreshed, then
-# acquire a new token
+# If no token was found in the cache or the token refresh failed, get a new one
 if not result:
     result = app.acquire_token_for_client(
         scopes=["https://graph.microsoft.com/.default"]
@@ -55,9 +55,10 @@ if not result:
 
     print("Could not find a cached token, so fetching a new one.")
 # </ms_docref_get_graph_token>
+
 # <ms_docref_make_graph_call>
 if "access_token" in result:
-    # Get this app registration's information
+    # Get *this* application's application object from Microsoft Graph
     response = requests.get(
         f"https://graph.microsoft.com/v1.0/applications/{config['client_objectid']}",
         headers={"Authorization": f'Bearer {result["access_token"]}'},
