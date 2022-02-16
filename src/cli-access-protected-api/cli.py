@@ -1,3 +1,4 @@
+# <ms_docref_script_intro_comment>
 """
 This application represents a confidential client application that is going to
 be calling Microsoft Graph as itself. This is a confidential client in that the
@@ -8,6 +9,7 @@ An example of this might be a nightly script that runs a query against a
 database, and based on the results sends an email to multiple people in the
 organization.
 """
+# </ms_docref_script_intro_comment>
 import json
 import requests
 
