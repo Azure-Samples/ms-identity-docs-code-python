@@ -10,6 +10,7 @@
 <div>
   <p>Before rendering the page, the controller was able to make a call to Microsoft Graph's <code>/me</code> API for your user and received the following:</p>
   <p><pre><code class="language-js">{{ graphCallResponse | tojson(indent=2) }}</code></pre></p>
+  <p>Refreshing this page will continue to use the cached access token acquired for Microsoft Graph, which is valid for another {{ graphAccessTokenExpiresInSeconds }} second(s) and future page views will attempt to refresh this token as it nears its expiration.</p>
 </div>
 <div>
   <p>The following links will all require you to sign into the application before they can be used. Navigating to them while not logged in will automatically initiate the login process.</p>
