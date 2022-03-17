@@ -27,6 +27,7 @@ import requests
 # <ms_docref_import_msal>
 # Import Microsoft Authentication Library (MSAL) for Python
 import msal
+from msal.authority import (AuthorityBuilder, AZURE_PUBLIC)
 # </ms_docref_import_msal>
 
 # <ms_docref_import_modules>
@@ -46,7 +47,7 @@ def create_app():
     # In addition to any Flask specific configuration from these default
     # settings. The following three keys are also expected as they are used
     # with the MSAL client in this sample: CLIENT_ID, CLIENT_CREDENTIAL,
-    # and AUTHORITY.
+    # and TENANT_ID.
     app.config.from_object("default_settings")
 
     # Session will be used for three [per-user] purposes
@@ -94,7 +95,7 @@ def create_app():
         # tokens in the initiate_auth_code_flow process.
         msal_client = msal.ConfidentialClientApplication(
             app.config.get("CLIENT_ID"),
-            authority=app.config.get("AUTHORITY"),
+            authority=AuthorityBuilder(AZURE_PUBLIC, app.config.get("TENANT_ID")),
             http_cache=http_cache,
         )
 
@@ -170,7 +171,7 @@ def create_app():
 
         msal_client = msal.ConfidentialClientApplication(
             app.config.get("CLIENT_ID"),
-            authority=app.config.get("AUTHORITY"),
+            authority=AuthorityBuilder(AZURE_PUBLIC, app.config.get("TENANT_ID")),
             client_credential=app.config.get("CLIENT_CREDENTIAL"),
             token_cache=token_cache,
             http_cache=http_cache,
@@ -249,7 +250,7 @@ def create_app():
         # the token cache.
         msal_client = msal.ConfidentialClientApplication(
             app.config.get("CLIENT_ID"),
-            authority=app.config.get("AUTHORITY"),
+            authority=AuthorityBuilder(AZURE_PUBLIC, app.config.get("TENANT_ID")),
             client_credential=app.config.get("CLIENT_CREDENTIAL"),
             token_cache=token_cache,
             http_cache=http_cache,
@@ -295,7 +296,9 @@ def create_app():
         ).json()
 
         # Show the "Graph" view for authenticated users
-        return render_template("authenticated/graph.html", graphCallResponse=response)
+        return render_template("authenticated/graph.html", 
+            graphCallResponse=response,
+            graphAccessTokenExpiresInSeconds=result['expires_in'])
         # </ms_docref_call_ms_graph>
 
     # <ms_docref_require_admin_role_authNZ>
@@ -354,8 +357,8 @@ def create_app():
         # If you also wanted your app's log out to suggest that the user logs
         # out of their Azure AD SSO session as well, you would redirect the
         # user as such:
-        # return redirect(f"{app.config['AUTHORITY']}/oauth2/v2.0/logout"
-        #   "?post_logout_redirect_uri={url_for('index', _external=True)}")
+        # return redirect(f"{AuthorityBuilder(AZURE_PUBLIC, app.config.get("TENANT_ID")}"
+        #   "/oauth2/v2.0/logout?post_logout_redirect_uri={url_for('index', _external=True)}")
         # If you do not do that, the user will still be signed into Azure AD
         # (SSO), meaning next time the user needs to sign in here, it will
         # happen without the user needing to re-enter their credentials.

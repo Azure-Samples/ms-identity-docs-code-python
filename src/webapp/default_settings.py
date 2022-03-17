@@ -21,5 +21,5 @@ CLIENT_ID = ""
 # Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
 CLIENT_CREDENTIAL = ""
 
-# Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
-AUTHORITY = ""
+# 'Tenant ID' of your Azure AD instance - this value is a GUID
+TENANT_ID = ""
