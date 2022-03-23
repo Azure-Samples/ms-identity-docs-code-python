@@ -38,32 +38,25 @@ from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
 # </ms_docref_import_modules>
 
+# <ms_docref_create_and_initialize_app>
 def create_app():
     """Configure the flask application"""
 
     # Initialize the flask app
     app = Flask(__name__)
 
-    # In addition to any Flask specific configuration from these default
-    # settings. The following three keys are also expected as they are used
-    # with the MSAL client in this sample: CLIENT_ID, CLIENT_CREDENTIAL,
-    # and TENANT_ID.
+    # Load Flask configuration settings such as session configs
     app.config.from_object("default_settings")
 
-    # Session will be used for three [per-user] purposes
-    # - Coordinate the auth code flow between auth legs
-    # - Store the "User" object (in this case, just the id token/claims)
-    # - Store the two MSAL client caches
-    #    - The token cache that contains access tokens and refresh tokens to
-    #      be used during requests after the auth code flow completes.
-    #    - The http cache that contains highly cacheable content like the
-    #      metadata endpoint.
+    # Initialize the serverside session for the app to cordinate auth flows, store the 
+    # "user" object and store MSAL client caches (token cache and http cache)
     Session(app)
 
     # Support both http (localhost) and https (deployed behind a web
     # proxy such as in most cloud deployments). See:
     # https://flask.palletsprojects.com/en/2.0.x/deploying/wsgi-standalone/#proxy-setups
     app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+   # </ms_docref_create_and_initialize_app>
 
     # If a user attempts to navigate to any place in the application that
     # raises an Unauthorized error, this error handler will immediately
@@ -72,6 +65,9 @@ def create_app():
     # user experience is optional. As an alternative, the user could be
     # presented with a sign-in page/link and the user can kick off the
     # auth code flow manually.
+
+    # <ms_docref_build_auth_code_flow>
+    # Redirect unauthorized users through the auth code flow to sign in
     @app.errorhandler(Unauthorized)
     def initiate_auth_code_flow(error):
         """
@@ -123,9 +119,11 @@ def create_app():
         # agreeing to the consent form. After this is complete, Azure AD will
         # redirect back to this application.
         return redirect(session["auth_code_flow"]["auth_uri"])
+    # </ms_docref_build_auth_code_flow>
 
     #### Application routes are defined below this point ####
-
+    
+    # <ms_docref_unprotected_app_route>
     @app.get("/")
     # This route does not require any authentication or authorization
     def index():
@@ -201,7 +199,9 @@ def create_app():
         # Send the user to their original destination, which was captured in
         # the auth_code_flow session object.
         return redirect(auth_code_flow["post_sign_in_url"])
+    # </ms_docref_unprotected_app_route>
 
+    # <ms_docref_require authentication>
     @app.get("/graph")
     # This route requires prior authentication
     def graph():
@@ -244,6 +244,7 @@ def create_app():
         # data is highly cacheable, and ideally would survive for the whole
         # user's session. This shouldn't be cached across user sessions.
         http_cache: dict = session.get("msal_http_response_cache", {})
+    # </ms_docref_require_authentication>
 
         # <ms_docref_configure_app>
         # Create an MSAL client using the app's configuration values and provide
