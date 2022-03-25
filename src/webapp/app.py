@@ -200,8 +200,8 @@ def create_app():
         # the auth_code_flow session object.
         return redirect(auth_code_flow["post_sign_in_url"])
     # </ms_docref_unprotected_app_route>
-
-    # <ms_docref_require authentication>
+    
+    # <ms_docref_require_authentication>
     @app.get("/graph")
     # This route requires prior authentication
     def graph():
