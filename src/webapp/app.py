@@ -260,7 +260,7 @@ def create_app():
 
         # <ms_docref_acquire_token>
         # Invoke the acquire_token flow on the MSAL client for the requested
-        # scope and account. Look for and retrieve an existing valid token in
+        # account and scope. Look for and retrieve an existing valid token in
         # the cache or use the refresh token to fetch a new access token.
         result: "dict[str: Any]" = msal_client.acquire_token_silent(
             scopes=["https://graph.microsoft.com/User.Read"],
