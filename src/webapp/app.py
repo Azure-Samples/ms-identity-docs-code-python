@@ -260,20 +260,15 @@ def create_app():
 
         # <ms_docref_acquire_token>
         # Invoke the acquire_token flow on the MSAL client for the requested
-        # scope and account. This will use the cache to either retrieve an
-        # existing valid token or will use the refresh token in the cache to
-        # fetch a new access token. A complete cache miss will result in an
-        # error and indicates that a former auth code flow exchange didn't
-        # include this scope in the request.
+        # account and scope. Look for and retrieve an existing valid token in
+        # the cache or use the refresh token to fetch a new access token.
         result: "dict[str: Any]" = msal_client.acquire_token_silent(
             scopes=["https://graph.microsoft.com/User.Read"],
             account=msal_client.get_accounts()[0],
         )
 
-        # If we had an expired access token and it needed to be refreshed
-        # we'll want to update our session's token cache to reflect the new
-        # access token and refresh token so next invocation will not require
-        # exchanging the refresh token for the access token again.
+        # Update the session's token cache to reflect the new access token and
+        # refresh token.
         if token_cache.has_state_changed:
             session["token_cache"] = token_cache.serialize()
         session["msal_http_response_cache"] = http_cache
