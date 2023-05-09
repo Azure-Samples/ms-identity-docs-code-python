@@ -1,19 +1,17 @@
-<!-- Keeping yaml frontmatter commented out for now
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
 languages:
 - python
 page_type: sample
-name: "Python web application written in Flask that both protects its own endpoints and accesses Microsoft Graph"
-description: "This Python web application protects various routes and contacts Microsoft Graph on behalf of the user. The code in this sample is used by one or more articles on docs.microsoft.com."
+name: Python web application written in Flask that both protects its own endpoints and accesses Microsoft Graph
+description: This Python web application protects various routes and contacts Microsoft Graph on behalf of the user. The code in this sample is used by one or more articles on docs.microsoft.com.
 products:
 - azure
 - azure-active-directory
 - ms-graph
 urlFragment: ms-identity-docs-code-webapp-python
 ---
--->
 
 <!-- SAMPLE ID: DOCS-CODE-019-->
 # Python Flask | web app | user sign-in, access control (protected routes), protected web API access (Microsoft Graph) | Microsoft identity platform
