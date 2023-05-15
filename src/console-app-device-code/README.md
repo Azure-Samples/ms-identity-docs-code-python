@@ -1,19 +1,17 @@
-<!-- Keeping yaml frontmatter commented out for now
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
 languages:
 - Python
 page_type: sample
-name: "Python console application that makes a request to the Graph API via the Device Code flow"
-description: "This Python console application uses the device code flow for authentication and then makes a request to Microsoft Graph for the user's profile data."
+name: Python console application that makes a request to the Graph API via the Device Code flow
+description: This Python console application uses the device code flow for authentication and then makes a request to Microsoft Graph for the user's profile data.
 products:
 - azure
 - azure-active-directory
 - ms-graph
 urlFragment: ms-identity-docs-code-app-device-code-python
 ---
--->
 
 # Python | console | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 

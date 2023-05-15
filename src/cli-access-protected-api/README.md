@@ -1,4 +1,3 @@
-<!-- Updated, but leaving commented out until we're ready to ship in samples browser
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
@@ -13,7 +12,7 @@ products:
 - ms-graph
 urlFragment: ms-identity-docs-code-cli-python
 ---
--->
+
 <!-- SAMPLE ID: DOCS-CODE-012 -->
 # Python | console | protected web API access (Microsoft Graph) | Microsoft identity platform
 
