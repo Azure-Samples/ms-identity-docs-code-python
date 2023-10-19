@@ -1,6 +1,6 @@
 ---
-# Metadata required by https://docs.microsoft.com/samples/browse/
-# Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
+# Metadata required by https://learn.microsoft.com/samples/browse/
+# Metadata properties: https://review.learn.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
 languages:
 - Python
 page_type: sample
@@ -30,16 +30,16 @@ Hello, world. You were able to access this because you provided a valid access t
 
 ## Prerequisites
 
-- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- A Microsoft Entra ID tenant and the permissions or role required for managing app registrations in the tenant.
 - Python 3.8+
-- [Azure Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local)
-- An empty, [Python 3.8 Function app (v4) deployed to Azure](https://docs.microsoft.com/azure/azure-functions/create-first-function-cli-python) and the permissions or role required to modify its settings
+- [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
+- An empty, [Python 3.8 Function app (v4) deployed to Azure](https://learn.microsoft.com/azure/azure-functions/create-first-function-cli-python) and the permissions or role required to modify its settings
 
 ## Setup
 
 ### 1. Register the app
 
-First, complete the steps in [Register an API application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis#register-the-web-api) to register the sample app.
+First, complete the steps in [Register an API application with the Microsoft identity platform](https://learn.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis#register-the-web-api) to register the sample app.
 
 Use these settings in your app registration.
 
@@ -50,11 +50,11 @@ Use these settings in your app registration.
 | **Platform type**              | _None_                                                               | No redirect URI required; don't select a platform.                              |
 | **Scopes defined by this API** | **Scope name**: `Greeting.Read`<br/>**Who can consent?**: **Admins and users**<br/>**Admin consent display name**: `Read API Greetings`<br/>**Admin consent description**: `Allows the user to see greetings from the API.`<br/>**User consent display name**: `Read API Greetings`<br/>**User consent description**: `Allows you to see greetings from the API.`<br/>**State**: **Enabled** | Required scope for this sample. |
 
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Entra admin center.
 
 ### 2. Enable Function app authentication
 
-Next, complete the steps in [Enable Azure Active Directory in your App Service app](https://docs.microsoft.com/azure/app-service/configure-authentication-provider-aad?toc=/azure/azure-functions/toc.json#-enable-azure-active-directory-in-your-app-service-app) to add Azure Active Directory as an identity provider for your API.
+Next, complete the steps in [Configure your App Service or Azure Functions app to use Microsoft Entra sign-in](https://learn.microsoft.com/azure/app-service/configure-authentication-provider-aad?toc=/azure/azure-functions/toc.json#-enable-azure-active-directory-in-your-app-service-app) to add Microsoft Entra ID as an identity provider for your API.
 
 Use these settings in your identity provider configuration.
 
@@ -62,15 +62,15 @@ Use these settings in your identity provider configuration.
 |--------------------------------:|:--------------------------------------------------------|:---------------------------------------------------------------------------------|
 | **Identity provider**           | **Microsoft**                                           | Required value for this sample.                                                  |
 | **App registration type**       | **Provide the details of an existing app registration** | Required value for this sample.                                                  |
-| **Application (client) ID**     | `<client-id>`                                           | Required value for this sample. <br/> 'Application (client) ID' of the API's app registration in Azure portal - this value is a GUID     |
+| **Application (client) ID**     | `<client-id>`                                           | Required value for this sample. <br/> 'Application (client) ID' of the API's app registration in the Microsoft Entra admin center - this value is a GUID     |
 | **Client secret (recommended)** | _None_                                                  | Suggested value for this sample. <br/> This sample doesn't require this feature. |
-| **Issuer URL**                  | `https://login.microsoftonline.com/<tenant-id>/v2.0`    | Required value for this sample. <br/> Update to include 'Tenant ID' of your Azure AD instance - this value is a GUID                     |
-| **Allowed token audiences**     | `api://<client-id>`                                     | Required value for this sample. <br/> 'Application ID URI' of app registration in Azure portal - this value typically starts with api:// |
+| **Issuer URL**                  | `https://login.microsoftonline.com/<tenant-id>/v2.0`    | Required value for this sample. <br/> Update to include 'Tenant ID' of your Microsoft Entra ID instance - this value is a GUID                     |
+| **Allowed token audiences**     | `api://<client-id>`                                     | Required value for this sample. <br/> 'Application ID URI' of app registration in the Microsoft Entra admin center - this value typically starts with api:// |
 | **Restrict access**             | **Require authentication**                              | Required value for this sample.                                                  |
 | **Unauthenticated requests**    | **HTTP 401 Unauthorized: recommended for APIs**         | Suggested value for this sample.                                                 |
 | **Token store**                 | _Unselected_                                            | Suggested value for this sample.                                                 |
 
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Entra admin center.
 
 ### 3. Deploy the Function app
 
@@ -91,7 +91,7 @@ Hello, world. You were able to access this because you provided a valid access t
 
 ## About the code
 
-This Azure Function is an anonymous HTTP trigger written in Python and uses the built-in [Authentication and authorization in Azure Functions](https://docs.microsoft.com/azure/app-service/overview-authentication-authorization) feature to offload fundamental JWT access token validation. Requests that make it through the built-in authentication feature of Azure Functions are then routed to the Python code, which applies additional access token validation checking for a specific scope.
+This Azure Function is an anonymous HTTP trigger written in Python and uses the built-in [Authentication and authorization in Azure Functions](https://learn.microsoft.com/azure/app-service/overview-authentication-authorization) feature to offload fundamental JWT access token validation. Requests that make it through the built-in authentication feature of Azure Functions are then routed to the Python code, which applies additional access token validation checking for a specific scope.
 
 - A missing or invalid (expired, wrong audience, etc) token will result in a `401` response. (Handled by Azure Functions authentication)
 - An otherwise valid token without the proper scope will result in a 403 response.
@@ -103,7 +103,7 @@ At the time of this writing, Function app authentication does not support a loca
 
 #### Web server gateway interface (WSGI) alternative
 
-In Python, it is common to use a web framework, such as Django or Flask, to handle APIs. While this sample doesn't show it, Azure Functions for Python does support [WSGI integration](https://docs.microsoft.com/python/api/azure-functions/azure.functions.wsgimiddleware), allowing you to use the web framework as your HTTP request pipeline. Introducing WSGI into this scenario is out of scope for this introduction, but doing so would allow you to use framework-specific authentication mechanisms that might feel more native for your Python API.
+In Python, it is common to use a web framework, such as Django or Flask, to handle APIs. While this sample doesn't show it, Azure Functions for Python does support [WSGI integration](https://learn.microsoft.com/python/api/azure-functions/azure.functions.wsgimiddleware), allowing you to use the web framework as your HTTP request pipeline. Introducing WSGI into this scenario is out of scope for this introduction, but doing so would allow you to use framework-specific authentication mechanisms that might feel more native for your Python API.
 
 ## Reporting problems
 
@@ -118,7 +118,7 @@ If you can't get the sample working, you've checked [Stack Overflow](https://sta
 
 > :warning: WARNING: Any issue in this repository _not_ limited to running one of its sample apps will be closed without being addressed.
 
-For all other requests, see [Support and help options for developers | Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/developer-support-help-options).
+For all other requests, see [Support and help options for developers](https://learn.microsoft.com/azure/active-directory/develop/developer-support-help-options).
 
 ## Contributing
 
