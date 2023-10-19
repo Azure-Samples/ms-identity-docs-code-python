@@ -1,11 +1,11 @@
 ---
-# Metadata required by https://docs.microsoft.com/samples/browse/
-# Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
+# Metadata required by https://learn.microsoft.com/samples/browse/
+# Metadata properties: https://review.learn.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
 languages:
 - python
 page_type: sample
 name: Python web application written in Flask that both protects its own endpoints and accesses Microsoft Graph
-description: This Python web application protects various routes and contacts Microsoft Graph on behalf of the user. The code in this sample is used by one or more articles on docs.microsoft.com.
+description: This Python web application protects various routes and contacts Microsoft Graph on behalf of the user. 
 products:
 - azure
 - azure-active-directory
@@ -24,18 +24,18 @@ This sample demonstrates a Python Flask web application that is both protected b
 
 ![A browser screenshot on a page showing a response from Microsoft Graph](./app.png)
 
-> :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
+> :page_with_curl: This sample application backs one or more technical articles on learn.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
 
 ## Prerequisites
 
-- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- A Microsoft Entra ID tenant and the permissions or role required for managing app registrations in the tenant.
 - Python 3.8+
 
 ## Setup
 
 ### 1. Register the app
 
-First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the sample app.
+First, complete the steps in [Register an application with the Microsoft identity platform](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the sample app.
 
 Use these settings in your app registration.
 
@@ -54,21 +54,21 @@ Use these settings in your Enterprise Application for this sample app.
 |:------------------------------------:|:---------------------------------------------|:---------------------------------------------------------------------------------------------|
 | **Users and groups**                 | **User**: _yourself_<br/>**Role**: **admin** | Required value for this sample. <br/> One route requires your user to be assigned this role. |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Entra admin center.
 
 ### 2. Update code sample with app registration values
 
-Open the _default\_settings.py_ file and modify the three Azure Active Directory configuration properties using the values from your [app's registration in the Azure portal](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app).
+Open the _default\_settings.py_ file and modify the three Microsoft Entra configuration properties using the values from your [app's registration in the Microsoft Entra admin center](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app).
 
 ```python
-# 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-CLIENT_ID = ""
+# 'Application (client) ID' of app registration in the Microsoft Entra admin center - this value is a GUID
+CLIENT_ID = "Enter_the_Application_Id_Here"
 
-# Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
-CLIENT_CREDENTIAL = ""
+# Client secret 'Value' (not its ID) from 'Client secrets' in app registration in the Microsoft Entra admin center
+CLIENT_CREDENTIAL = "Enter_the_Client_Secret_Value_Here"
 
-# 'Tenant ID' of your Azure AD instance - this value is a GUID
-TENANT_ID = ""
+# 'Tenant ID' of your Microsoft Entra ID tenant - this value is a GUID
+TENANT_ID = "Enter_the_Tenant_ID_Here"
 ```
 
 ### 3. Install package(s)
@@ -89,13 +89,13 @@ flask run --host=localhost
 
 Open your browser and navigate to **http://localhost:5000**. If everything worked, the sample app should produce output similar to this:
 
-![A browser screenshot showing the weclome page to the sample application.](./home.png)
+![A browser screenshot showing the welcome page to the sample application.](./home.png)
 
 ## About the code
 
 This Python web application uses the Flask web framework. The app has three routes, each requiring a different authentication/authorization level.
 
-When a signed-out user navigates to a route requiring authentication, their browser is redirected to the Azure AD sign-in page. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data.
+When a signed-out user navigates to a route requiring authentication, their browser is redirected to the Microsoft Entra ID sign-in page. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data.
 
 Please be aware that all of the controller method processing is performed "inline" in the body of the controller. Meaning, the code does not rely on any Flask frameworks (or even utility methods) to ensure that the interplay between the Microsoft Authentication Library (MSAL) and the Flask session is understood. In practice you'd of course handle cross-cutting concerns such as authorization, authentication, session management in a more Flask-native way, reducing duplication and abstracting the logic away from the specific purpose of the controller method.
 
@@ -112,7 +112,7 @@ If you can't get the sample working, you've checked [Stack Overflow](https://sta
 
 > :warning: WARNING: Any issue in this repository _not_ limited to running one of its sample apps will be closed without being addressed.
 
-For all other requests, see [Support and help options for developers | Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/developer-support-help-options).
+For all other requests, see [Support and help options for developers | Microsoft identity platform](https://learn.microsoft.com/azure/active-directory/develop/developer-support-help-options).
 
 ## Contributing
 

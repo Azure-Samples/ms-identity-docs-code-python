@@ -15,11 +15,11 @@ DEBUG = True
 # For local development purposes
 SESSION_TYPE = "filesystem"
 
-# 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-CLIENT_ID = ""
+# 'Application (client) ID' of app registration in the Microsoft Entra admin center - this value is a GUID
+CLIENT_ID = "Enter_the_Application_Id_Here"
 
-# Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
-CLIENT_CREDENTIAL = ""
+# Client secret 'Value' (not its ID) from 'Client secrets' in app registration in the Microsoft Entra admin center
+CLIENT_CREDENTIAL = "Enter_the_Client_Secret_Value_Here"
 
-# 'Tenant ID' of your Azure AD instance - this value is a GUID
-TENANT_ID = ""
+# 'Tenant ID' of your Microsoft Entra ID tenant - this value is a GUID
+TENANT_ID = "Enter_the_Tenant_ID_Here"

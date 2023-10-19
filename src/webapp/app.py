@@ -71,7 +71,7 @@ def create_app():
     @app.errorhandler(Unauthorized)
     def initiate_auth_code_flow(error):
         """
-        Builds the auth code flow and then redirects to Azure AD to allow the
+        Builds the auth code flow and then redirects to Microsoft Entra ID to allow the
         user to perform authorization.
         """
 
@@ -114,9 +114,9 @@ def create_app():
         # Update the session's MSAL http response cache
         session["msal_http_response_cache"] = http_cache
 
-        # Redirect to Azure AD to allow the user to perform any auth steps
+        # Redirect to Microsoft Entra ID to allow the user to perform any auth steps
         # required. This could be logging in (if not already signed in) and
-        # agreeing to the consent form. After this is complete, Azure AD will
+        # agreeing to the consent form. After this is complete, Microsoft Entra ID will
         # redirect back to this application.
         return redirect(session["auth_code_flow"]["auth_uri"])
     # </ms_docref_build_auth_code_flow>
@@ -133,15 +133,15 @@ def create_app():
 
     @app.get("/auth/redirect")
     # This route does not require any authentication or authorization and is not
-    # called directly by the user but instead Azure AD will redirect the user back
+    # called directly by the user but instead Microsoft Entra ID will redirect the user back
     # to this URL after their sign-in is complete.
     def authorized():
         """
-        Handles the redirect from Azure AD for the second leg of the auth code flow.
+        Handles the redirect from Microsoft Entra ID for the second leg of the auth code flow.
         """
 
         # After the user signs in and accepts the required application
-        # permissions, Azure AD will redirect the user back to this route, and
+        # permissions, Microsoft Entra ID will redirect the user back to this route, and
         # you need to capture the returned id token (which acts as the "User"
         # in this context) and exchange the id token for the application's
         # required access & refresh tokens.
@@ -175,7 +175,7 @@ def create_app():
             http_cache=http_cache,
         )
 
-        # Exchange the original auth code flow request and the new Azure AD
+        # Exchange the original auth code flow request and the new Microsoft Entra ID
         # response parameters for id, access, and refresh tokens based on the
         # requested scopes from the original request.
         result: "dict[str, Any]" = msal_client.acquire_token_by_auth_code_flow(
@@ -213,7 +213,7 @@ def create_app():
             raise Unauthorized()
 
         # Perform additional session validation (as desired). For example, this
-        # checks to ensure that id_token isn't expired. Azure AD tokens, by
+        # checks to ensure that id_token isn't expired. Microsoft Entra tokens, by
         # default, are valid for 1 hour (but can be configured as low as 10
         # minutes or as much as 1 day). Raise an Unauthorized error, which can
         # be used to trigger a new auth code flow.
@@ -309,7 +309,7 @@ def create_app():
             raise Unauthorized()
 
         # Perform additional session validation (as desired). For example, this
-        # checks to ensure that id_token isn't expired. Azure AD tokens, by
+        # checks to ensure that id_token isn't expired. Microsoft Entra tokens, by
         # default, are valid for 1 hour (but can be configured as low as 10
         # minutes or as much as 1 day). Raise an Unauthorized error, which can
         # be used to trigger a new auth code flow.
@@ -351,11 +351,11 @@ def create_app():
         # updated token_cache back to the session.
 
         # If you also wanted your app's log out to suggest that the user logs
-        # out of their Azure AD SSO session as well, you would redirect the
+        # out of their Microsoft Entra SSO session as well, you would redirect the
         # user as such:
         # return redirect(f"{AuthorityBuilder(AZURE_PUBLIC, app.config.get("TENANT_ID")}"
         #   "/oauth2/v2.0/logout?post_logout_redirect_uri={url_for('index', _external=True)}")
-        # If you do not do that, the user will still be signed into Azure AD
+        # If you do not do that, the user will still be signed into Microsoft Entra
         # (SSO), meaning next time the user needs to sign in here, it will
         # happen without the user needing to re-enter their credentials.
         return redirect(url_for("index"))
