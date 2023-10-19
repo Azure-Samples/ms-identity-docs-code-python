@@ -44,7 +44,7 @@ Graph API call result: {
 
 ## Prerequisites
 
-- Microsoft Entra ID tenant and the permissions or role required for managing app registrations in the tenant.
+- A Microsoft Entra ID tenant and the permissions or role required for managing app registrations in the tenant.
 - Python 3
 
 ## Setup
