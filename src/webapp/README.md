@@ -28,7 +28,7 @@ This sample demonstrates a Python Flask web application that is both protected b
 
 ## Prerequisites
 
-- A Microsoft Entra ID tenant and the permissions or role required for managing app registrations in the tenant.
+- A Microsoft Entra tenant and the permissions or role required for managing app registrations in the tenant.
 - Python 3.8+
 
 ## Setup
@@ -67,7 +67,7 @@ CLIENT_ID = "Enter_the_Application_Id_Here"
 # Client secret 'Value' (not its ID) from 'Client secrets' in app registration in the Microsoft Entra admin center
 CLIENT_CREDENTIAL = "Enter_the_Client_Secret_Value_Here"
 
-# 'Tenant ID' of your Microsoft Entra ID tenant - this value is a GUID
+# 'Tenant ID' of your Microsoft Entra tenant - this value is a GUID
 TENANT_ID = "Enter_the_Tenant_ID_Here"
 ```
 
@@ -95,7 +95,7 @@ Open your browser and navigate to **http://localhost:5000**. If everything worke
 
 This Python web application uses the Flask web framework. The app has three routes, each requiring a different authentication/authorization level.
 
-When a signed-out user navigates to a route requiring authentication, their browser is redirected to the Microsoft Entra ID sign-in page. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data.
+When a signed-out user navigates to a route requiring authentication, their browser is redirected to the Microsoft Entra sign-in page. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data.
 
 Please be aware that all of the controller method processing is performed "inline" in the body of the controller. Meaning, the code does not rely on any Flask frameworks (or even utility methods) to ensure that the interplay between the Microsoft Authentication Library (MSAL) and the Flask session is understood. In practice you'd of course handle cross-cutting concerns such as authorization, authentication, session management in a more Flask-native way, reducing duplication and abstracting the logic away from the specific purpose of the controller method.
 

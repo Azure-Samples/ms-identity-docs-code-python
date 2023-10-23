@@ -71,7 +71,7 @@ def create_app():
     @app.errorhandler(Unauthorized)
     def initiate_auth_code_flow(error):
         """
-        Builds the auth code flow and then redirects to Microsoft Entra ID to allow the
+        Builds the auth code flow and then redirects to Microsoft Entra to allow the
         user to perform authorization.
         """
 

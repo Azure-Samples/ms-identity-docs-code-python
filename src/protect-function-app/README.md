@@ -30,7 +30,7 @@ Hello, world. You were able to access this because you provided a valid access t
 
 ## Prerequisites
 
-- A Microsoft Entra ID tenant and the permissions or role required for managing app registrations in the tenant.
+- A Microsoft Entra tenant and the permissions or role required for managing app registrations in the tenant.
 - Python 3.8+
 - [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
 - An empty, [Python 3.8 Function app (v4) deployed to Azure](https://learn.microsoft.com/azure/azure-functions/create-first-function-cli-python) and the permissions or role required to modify its settings
