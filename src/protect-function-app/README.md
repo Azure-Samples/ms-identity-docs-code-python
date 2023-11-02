@@ -64,7 +64,7 @@ Use these settings in your identity provider configuration.
 | **App registration type**       | **Provide the details of an existing app registration** | Required value for this sample.                                                  |
 | **Application (client) ID**     | `<client-id>`                                           | Required value for this sample. <br/> 'Application (client) ID' of the API's app registration in the Microsoft Entra admin center - this value is a GUID     |
 | **Client secret (recommended)** | _None_                                                  | Suggested value for this sample. <br/> This sample doesn't require this feature. |
-| **Issuer URL**                  | `https://login.microsoftonline.com/<tenant-id>/v2.0`    | Required value for this sample. <br/> Update to include 'Tenant ID' of your Microsoft Entra ID instance - this value is a GUID                     |
+| **Issuer URL**                  | `https://login.microsoftonline.com/<tenant-id>/v2.0`    | Required value for this sample. <br/> Update to include 'Tenant ID' of your Microsoft Entra instance - this value is a GUID                     |
 | **Allowed token audiences**     | `api://<client-id>`                                     | Required value for this sample. <br/> 'Application ID URI' of app registration in the Microsoft Entra admin center - this value typically starts with api:// |
 | **Restrict access**             | **Require authentication**                              | Required value for this sample.                                                  |
 | **Unauthenticated requests**    | **HTTP 401 Unauthorized: recommended for APIs**         | Suggested value for this sample.                                                 |
