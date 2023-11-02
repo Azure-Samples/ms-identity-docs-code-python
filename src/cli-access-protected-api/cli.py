@@ -20,16 +20,16 @@ from msal import ConfidentialClientApplication
 
 # <ms_docref_configure_msal>
 # MSAL requires these values for interaction with the Microsoft identity platform.
-# Get the values from Azure portal > Azure Active Directory > App registrations > $YOUR_APP_NAME.
+# Get the values from the Microsoft Entra admin center > Identity > Applications > App registrations > $YOUR_APP_NAME.
 config = {
     # Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
-    "authority": "",
-    # 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-    "client_id": "",
-    # Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
-    "client_secret": "",
-    # Client 'Object ID' of app registration in Azure portal - this value is a GUID
-    "client_objectid": "",
+    "authority": "https://login.microsoftonline.com/Enter_the_Tenant_ID_Here",
+    # 'Application (client) ID' of app registration in the Microsoft Entra admin center - this value is a GUID
+    "client_id": "Enter_the_Application_Id_Here",
+    # Client secret 'Value' (not its ID) from 'Client secrets' in the Microsoft Entra admin center
+    "client_secret": "Enter_the_Client_Secret_Value_Here",
+    # Client 'Object ID' of app registration in the Microsoft Entra admin center - this value is a GUID
+    "client_objectid": "Enter_the_Client_Object_ID_Here",
 }
 # </ms_docref_configure_msal>
 

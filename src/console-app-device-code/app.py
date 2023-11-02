@@ -11,10 +11,10 @@ import requests
 
 # MSAL configs
 config = {
-    # Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
-    "authority": "",
-    # 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-    "client_id": "",
+    # Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
+    "authority": "https://login.microsoftonline.com/Enter_the_Tenant_ID_Here",
+    # 'Application (client) ID' of app registration in the Microsoft Entra admin center - this value is a GUID
+    "client_id": "Enter_the_Application_Id_Here",
 }
 
 # Create a MSAL public client application

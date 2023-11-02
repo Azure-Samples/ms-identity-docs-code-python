@@ -1,6 +1,6 @@
 ---
-# Metadata required by https://docs.microsoft.com/samples/browse/
-# Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
+# Metadata required by https://learn.microsoft.com/samples/browse/
+# Metadata properties: https://review.learn.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
 languages:
 - Python
 page_type: sample
@@ -41,14 +41,14 @@ To sign in, use a web browser to open the page https://microsoft.com/devicelogin
 ```
 ## Prerequisites
 
-- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- A Microsoft Entra tenant and the permissions or role required for managing app registrations in the tenant.
 - Python 3
 
 ## Setup
 
 ### 1. Register the app
 
-First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the application.
+First, complete the steps in [Register an application with the Microsoft identity platform](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the application.
 
 Use these settings in your app registration.
 
@@ -59,7 +59,7 @@ Use these settings in your app registration.
 | **Platform type**                 | _None_                                                                       | No redirect URI required; don't select a platform.                                                 |
 | **Allow public client flows**     | **Yes**                                                                      | Required value for this sample.                                                                    |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Entra admin center.
 
 ### 2. Update code sample with app registration values
 
@@ -67,7 +67,7 @@ Use these settings in your app registration.
 # Full directory URL, in the form of https://login.microsoftonline.com/<tenant>
 "authority": "",
 
-# 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+# 'Application (client) ID' of app registration in Microsoft Entra admin center - this value is a GUID
 "client_id": ""
 ```
 
@@ -121,7 +121,7 @@ If you can't get the sample working, you've checked [Stack Overflow](http://stac
 
 > :warning: WARNING: Any issue in this repository _not_ limited to running one of its sample apps will be closed without being addressed.
 
-For all other requests, see [Support and help options for developers | Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/developer-support-help-options).
+For all other requests, see [Support and help options for developers](https://learn.microsoft.com/azure/active-directory/develop/developer-support-help-options).
 
 ## Contributing
 
