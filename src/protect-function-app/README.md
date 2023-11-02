@@ -5,7 +5,7 @@ languages:
 - Python
 page_type: sample
 name: Python Azure Function that protects an HTTP trigger function  with Easy Auth and access token scope validation.
-description: This Python Azure Function protects its own HTTP Trigger function with Easy Auth and access token scope validation. The code in this sample is used by one or more articles on docs.microsoft.com.
+description: This Python Azure Function protects its own HTTP Trigger function with Easy Auth and access token scope validation. The code in this sample is used by one or more articles on learn.microsoft.com.
 products:
 - azure
 - azure-active-directory
