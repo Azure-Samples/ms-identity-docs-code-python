@@ -1,9 +1,0 @@
-# Flask
-Flask~=2.0.2
-Flask-Session~=0.4.0
-
-# Microsoft Authentication Library for Python
-msal==1.17.0
-
-# Environment variable parsing
-environs~=9.3.5
