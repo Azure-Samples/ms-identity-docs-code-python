@@ -47,6 +47,13 @@ def auth_response():
 
 @app.route("/logout")
 def logout():
+    if app.config["TENANT"] == "CUSTOMER":
+    # This branch is for CIAM
+        url = f"{app.config['AUTHORITY']}/{app.config['SUBDOMAIN']}.onmicrosoft.com/oauth2/v2.0/logout?post_logout_redirect_uri=http://localhost:3000"
+        auth._session.pop(auth._USER, None)
+        return redirect(url)
+    
+    # This is for External ID and B2C
     return redirect(auth.log_out(url_for("index", _external=True)))
 
 
