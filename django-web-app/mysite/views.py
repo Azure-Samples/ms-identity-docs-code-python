@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render
 import requests
 
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 
 @settings.AUTH.login_required

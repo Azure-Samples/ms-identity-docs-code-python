@@ -23,7 +23,7 @@ from . import views
 
 urlpatterns = [
     settings.AUTH.urlpattern,
-    path('', views.index, name="index"),
+    path('', views.index),
     path("call_downstream_api", views.call_downstream_api),
     path('admin/', admin.site.urls),
 ]
