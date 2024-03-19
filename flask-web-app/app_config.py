@@ -34,11 +34,11 @@ REDIRECT_PATH = "/getAToken"  # Used for forming an absolute URL to your redirec
 
 # You can find more Microsoft Graph API endpoints from Graph Explorer
 # https://developer.microsoft.com/en-us/graph/graph-explorer
-ENDPOINT = 'https://graph.microsoft.com/v1.0/users'  # This resource requires no admin consent
+ENDPOINT = 'https://graph.microsoft.com/v1.0/me'  # This resource requires no admin consent
 
 # You can find the proper permission names from this document
 # https://docs.microsoft.com/en-us/graph/permissions-reference
-SCOPE = ["User.ReadBasic.All"]
+SCOPE = ["User.Read"]
 
 # Tells the Flask-session extension to store sessions in the filesystem
 SESSION_TYPE = "filesystem"
