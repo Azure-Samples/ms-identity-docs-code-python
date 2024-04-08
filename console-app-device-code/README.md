@@ -36,7 +36,7 @@ To sign in, use a web browser to open the page https://microsoft.com/devicelogin
   "preferredLanguage": null,
   "surname": "Employee",
   "userPrincipalName": "contoso_employee@contoso.com",
-  "id": "e3a49d8b-d849-48eb-9947-37c1f9589812"
+  "id": "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 }
 ```
 ## Prerequisites
@@ -100,7 +100,7 @@ Follow the device code flow instructions that are presented. If everything worke
   "preferredLanguage": null,
   "surname": "Employee",
   "userPrincipalName": "contoso_employee@contoso.com",
-  "id": "e3a49d8b-d849-48eb-9947-37c1f9589812"
+  "id": "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 }
 ```
 

@@ -29,9 +29,9 @@ $ python3 cli.py
 Could not find a cached token, so fetching a new one.
 Graph API call result: {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-  "id": "6ed9c555-6dfd-4f35-b832-f1f634c0b876",
+  "id": "00aa00aa-bb11-cc22-dd33-44ee44ee44ee",
   "deletedDateTime": null,
-  "appId": "59c06144-a668-4828-9ca8-ed6e117c8344",
+  "appId": "00001111-aaaa-2222-bbbb-3333cccc4444",
   "applicationTemplateId": null,
   "disabledByMicrosoftStatus": null,
   "createdDateTime": "2021-01-17T15:30:55Z",
@@ -98,9 +98,9 @@ If everything worked, you should receive a response similar to this (output trun
 Could not find a cached token, so fetching a new one.
 Graph API call result: {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-  "id": "6ed9c555-6dfd-4f35-b832-f1f634c0b876",
+  "id": "00aa00aa-bb11-cc22-dd33-44ee44ee44ee",
   "deletedDateTime": null,
-  "appId": "59c06144-a668-4828-9ca8-ed6e117c8344",
+  "appId": "00001111-aaaa-2222-bbbb-3333cccc4444",
   "applicationTemplateId": null,
   "disabledByMicrosoftStatus": null,
   "createdDateTime": "2021-01-17T15:30:55Z",
