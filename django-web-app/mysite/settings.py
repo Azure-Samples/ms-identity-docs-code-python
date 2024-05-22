@@ -13,7 +13,7 @@ from pathlib import Path
 
 import os, random, string
 from dotenv import load_dotenv
-from identity.django import Auth
+from ms_identity_python.django import Auth  # pip install "ms_identity_python[django] @ git+https://github.com/azure-samples/ms-identity-python@0.8"
 load_dotenv()
 AUTH = Auth(
     os.getenv('CLIENT_ID'),
