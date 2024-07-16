@@ -13,4 +13,4 @@ updates:
       - "/flask-web-app"
       - "/protect-function-app"
     schedule:
-      interval: "weekly"
+      interval: "daily"
