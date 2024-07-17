@@ -1,5 +1,5 @@
 # Microsoft Authentication Library for Python
-msal==1.16.0
+msal==1.30.0
 
 # Requests
 requests==2.27.1
