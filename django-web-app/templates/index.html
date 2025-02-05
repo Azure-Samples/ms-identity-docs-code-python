@@ -2,25 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Microsoft Entra ID Django Web App Sample: Index</title>
+    <title>{{ title }}</title>
 </head>
 <body>
-    <h1>Microsoft Entra ID Django Web App Sample {{version}}</h1>
+    <h1>{{ title }}</h1>
     <h2>Welcome {{ user.name }}!</h2>
 
-    {% load static %}
-    <img src="{% static 'topology.png' %}" alt="Topology">
+    <!-- There is much hassle to get the local static image to show up on App Service.
+    https://learn.microsoft.com/en-us/azure/app-service/configure-language-python#serve-static-files-for-django-apps
+    For now, we will use a remote image.
+    -->
+    <img src="https://github.com/Azure-Samples/ms-identity-python-webapp-django/raw/main/static/topology.png" alt="Topology">
 
     <ul>
-    {% if downstream_api %}
-      <li><a href='/call_downstream_api'>Call a downstream API</a></li>
+    {% if api_endpoint %}
+      <li><a href='/call_api'>Call an API</a></li>
     {% endif %}
 
     {% if edit_profile_url %}
       <li><a href='{{ edit_profile_url }}'>Edit Profile</a></li>
     {% endif %}
 
-    <li><a href="{% url 'identity.django.logout' %}">Logout</a></li>
+    <li><a href="{% url 'identity.logout' %}">Logout</a></li>
     </ul>
 </body>
 </html>
