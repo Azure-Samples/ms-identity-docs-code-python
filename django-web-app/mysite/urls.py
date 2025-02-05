@@ -24,6 +24,6 @@ from . import views
 urlpatterns = [
     settings.AUTH.urlpattern,
     path('', views.index),
-    path("call_downstream_api", views.call_downstream_api),
+    path("call_api", views.call_api),
     path('admin/', admin.site.urls),
 ]
